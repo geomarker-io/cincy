@@ -1,0 +1,54 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+# cincy
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/geomarker-io/cincy/workflows/R-CMD-check/badge.svg)](https://github.com/geomarker-io/cincy/actions)
+<!-- badges: end -->
+
+The `cincy` package contains simple feature geographic polygon files (`sf` objects) that define Cincinnati Neighborhood, Tract, County, and ZIP Code Geographies.
+
+#### Installing
+
+```{r, eval = F}
+# install.packages("remotes")
+remotes::install_github("geomarker-io/cincy")
+```
+
+#### Data
+
+Objects are named by geography, source, and optionally vintage:
+
+```{r}
+data(package = "cincy")$results[ , "Item"]
+```
+
+Use autocomplete functionality at the `R` prompt (e.g., typing `cincy::` and pressing `TAB` twice) to find the needed `sf` object, narrowing first based on geography (`tract`, `zcta`, `neigh`), source, and optionally vintage.
+
+Consult the help file for any object for more information on the data within it:
+
+```{r}
+?cincy::neigh_ccc
+```
+
+Or explore the dataset reference documentation online at [https://geomarker.io/cincy/reference](https://geomarker.io/cincy/reference)
+
+#### Examples
+
+For example, to get Cincinnati neighborhoods, as defined by the most recent version of community council boundaries from CAGIS:
+
+```{r}
+cincy::neigh_ccc
+```
+
+Or to get Cincinnati ZIP Codes, as defined by the Census Bureau as ZIP Code Tabulation Areas (ZCTAs), from 2000:
+
+```{r}
+cincy::zcta_tigris_2000
+```
+
+
