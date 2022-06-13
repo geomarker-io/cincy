@@ -7,9 +7,6 @@ library(dplyr)
 library(sf)
 library(tigris)
 
-## TODO create README.Rmd that prints each type of geography and auto makes an interactive map
-## TODO do we need to do st_make_valid on any of these? / should we also include NHGIS 'conflated' tract boundaries?
-
 tract_tigris_2000 <-
   tracts(state = "39", county = "061", year = 2000) |>
   st_transform(5072) |>
@@ -21,8 +18,6 @@ zcta_tigris_2000 <-
   zctas(year = 2000, state = "39") |>
   select(zcta = ZCTA5CE00) |>
   st_transform(5072) |>
-  st_filter(county_tigris_2000, .predicate = st_intersects)
-# TODO better predicate to avoid keeping zip codes that only touch on the boundaries
 
 usethis::use_data(tract_tigris_2000, zcta_tigris_2000, overwrite = TRUE)
 
