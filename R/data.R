@@ -34,7 +34,7 @@ NULL
 
 #' Census Tracts (2010 TIGER/Line)
 #' @rdname Tracts
-#' @source [TIGER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html)
+#' @source [TIER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html)
 "tract_tigris_2010"
 
 #' Census Tracts (2020 TIGER/Line)
@@ -46,11 +46,11 @@ NULL
 #'
 #' Neighborhoods for Hamilton County defined in [CAGIS](http://cagismaps.hamilton-co.org/cagisportal) [Open Data](http://cagis.org/Opendata/?)
 
-#' Neighborhoods (CCC)
+#' Cincinnati Community Council (CCC) Neighborhoods
 #' @rdname Neighborhoods
 "neigh_ccc"
 
-#' Neighborhoods (SNA)
+#' Cincinnati Statistical Neighborhood Approximations (SNA)
 #' @rdname Neighborhoods
 "neigh_sna"
 

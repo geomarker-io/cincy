@@ -17,6 +17,6 @@ neigh_sna
 }
 \description{
 Neighborhoods for Hamilton County defined in \href{http://cagismaps.hamilton-co.org/cagisportal}{CAGIS} \href{http://cagis.org/Opendata/?}{Open Data}
-Neighborhoods (CCC)
+Cincinnati Community Council (CCC) Neighborhoods
 }
 \keyword{datasets}
