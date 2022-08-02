@@ -17,7 +17,13 @@ county_tigris_2000 <- st_union(tract_tigris_2000)
 zcta_tigris_2000 <-
   zctas(year = 2000, state = "39") |>
   select(zcta = ZCTA5CE00) |>
-  st_transform(5072) |>
+  st_transform(5072)
+
+zcta_tigris_2000 <-
+  st_filter(zcta_tigris_2000, county_tigris_2000, .predicate = st_within) |>
+  bind_rows(st_filter(zcta_tigris_2000,
+                      county_tigris_2000,
+                      .predicate = st_overlaps))
 
 usethis::use_data(tract_tigris_2000, zcta_tigris_2000, overwrite = TRUE)
 
@@ -31,8 +37,13 @@ county_tigris_2010 <- st_union(tract_tigris_2010)
 zcta_tigris_2010 <-
   zctas(year = 2010, state = "39") |>
   st_transform(5072) |>
-  select(zcta = ZCTA5CE10) |>
-  st_filter(county_tigris_2010, .predicate = st_intersects)
+  select(zcta = ZCTA5CE10)
+
+zcta_tigris_2010 <-
+  st_filter(zcta_tigris_2010, county_tigris_2010, .predicate = st_within) |>
+  bind_rows(st_filter(zcta_tigris_2010,
+                      county_tigris_2010,
+                      .predicate = st_overlaps))
 
 usethis::use_data(tract_tigris_2010, zcta_tigris_2010, overwrite = TRUE)
 
@@ -46,8 +57,15 @@ county_tigris_2020 <- st_union(tract_tigris_2020)
 zcta_tigris_2020 <-
   zctas(year = 2020) |>
   st_transform(5072) |>
-  select(zcta = ZCTA5CE20) |>
-  st_filter(county_tigris_2020, .predicate = st_intersects)
+  select(zcta = ZCTA5CE20)
+
+zcta_tigris_2020 <-
+  st_filter(zcta_tigris_2020, county_tigris_2020, .predicate = st_within) |>
+  bind_rows(st_filter(zcta_tigris_2020,
+                      county_tigris_2020,
+                      .predicate = st_overlaps)) |>
+  filter(!zcta %in% c(45053, 47060, 47025, 41017, 41074,
+                      45157, 45014)) # manually remove
 
 usethis::use_data(tract_tigris_2020, zcta_tigris_2020, overwrite = TRUE)
 
