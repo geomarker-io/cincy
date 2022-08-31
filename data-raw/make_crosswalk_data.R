@@ -99,6 +99,10 @@ zctas_2020_to_2000 <- make_weights(zcta_tigris_2000 %>%
                                       rename(zcta_2020 = zcta),
                                     key = zcta_2000)
 
+# neighborhoods
+hamilton_tract_to_cincy_neighborhood <-
+  read_csv('data-raw/hamilton_tract_to_cincy_neighborhood.csv')
+
 usethis::use_data(zcta_to_tract_2000, tract_to_zcta_2000,
                   zcta_to_tract_2010, tract_to_zcta_2010,
                   zcta_to_tract_2020, tract_to_zcta_2020,
@@ -108,4 +112,5 @@ usethis::use_data(zcta_to_tract_2000, tract_to_zcta_2000,
                   zctas_2000_to_2010, zctas_2010_to_2000,
                   zctas_2010_to_2020, zctas_2020_to_2010,
                   zctas_2000_to_2020, zctas_2020_to_2000,
+                  hamilton_tract_to_cincy_neighborhood,
                   overwrite = TRUE, internal = TRUE)
