@@ -14,3 +14,7 @@ Depends:
 LazyData: true
 Imports: 
     sf
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
