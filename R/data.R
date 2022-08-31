@@ -61,3 +61,7 @@ NULL
 #' @source See `data-raw/hamilton_tract_to_cincy_neighborhood.csv`
 "neigh_cchmc"
 
+#' CODEC Counties
+#' @rdname Counties
+"codec_counties"
+

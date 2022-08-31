@@ -7,11 +7,11 @@
 \alias{zcta_tigris_2020}
 \title{ZCTAs}
 \format{
-An object of class \code{sf} (inherits from \code{data.frame}) with 62 rows and 2 columns.
+An object of class \code{sf} (inherits from \code{data.frame}) with 54 rows and 2 columns.
 
-An object of class \code{sf} (inherits from \code{data.frame}) with 62 rows and 2 columns.
+An object of class \code{sf} (inherits from \code{data.frame}) with 57 rows and 2 columns.
 
-An object of class \code{sf} (inherits from \code{data.frame}) with 67 rows and 2 columns.
+An object of class \code{sf} (inherits from \code{data.frame}) with 59 rows and 2 columns.
 }
 \source{
 \href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2000.html}{TIGER/Line Shapefile}
