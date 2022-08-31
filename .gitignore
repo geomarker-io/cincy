@@ -2,3 +2,5 @@
 /OpenDataWinter2021.gdb/
 /data-raw/*.gdb
 .Rproj.user
+inst/doc
+.DS_Store
