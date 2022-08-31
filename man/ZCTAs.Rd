@@ -7,18 +7,15 @@
 \alias{zcta_tigris_2020}
 \title{ZCTAs}
 \format{
-An object of class \code{sf} (inherits from \code{data.frame}) with 62 rows and 2 columns.
+An object of class \code{sf} (inherits from \code{data.frame}) with 54 rows and 2 columns.
 
-An object of class \code{sf} (inherits from \code{data.frame}) with 62 rows and 2 columns.
+An object of class \code{sf} (inherits from \code{data.frame}) with 57 rows and 2 columns.
 
-An object of class \code{sf} (inherits from \code{data.frame}) with 67 rows and 2 columns.
+An object of class \code{sf} (inherits from \code{data.frame}) with 59 rows and 2 columns.
 }
 \source{
-\href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2000.html}{TIGER/Line Shapefile}
-
-\href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html}{TIGER/Line Shapefile}
-
-\href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2020.html}{TIGER/Line Shapefile}
+ZCTAs were downloaded directly from the Census Bureau using the \href{https://github.com/walkerke/tigris}{tigris} package
+ZCTA (2000 TIGER/Line)
 }
 \usage{
 zcta_tigris_2000
@@ -30,9 +27,5 @@ zcta_tigris_2020
 \description{
 \href{https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html}{ZIP Code Tabulation Areas (ZCTAs)}
 for Ohio that (at least partially) intersect with Hamilton County from 2000, 2010, and 2020.
-}
-\details{
-ZCTAs were downloaded directly from the Census Bureau using the \href{https://github.com/walkerke/tigris}{tigris} package
-ZCTA (2000 TIGER/Line)
 }
 \keyword{datasets}

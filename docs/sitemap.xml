@@ -1,48 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://geomarker.io/cincy/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://geomarker.io/cincy/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://geomarker.io/cincy/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://geomarker.io/cincy/index.html</loc>
   </url>
   <url>
-    <loc>/reference/Census_Tract.html</loc>
+    <loc>https://geomarker.io/cincy/reference/Counties.html</loc>
   </url>
   <url>
-    <loc>/reference/Neighborhoods.html</loc>
+    <loc>https://geomarker.io/cincy/reference/Tracts.html</loc>
   </url>
   <url>
-    <loc>/reference/Tracts.html</loc>
+    <loc>https://geomarker.io/cincy/reference/ZCTAs.html</loc>
   </url>
   <url>
-    <loc>/reference/ZCTA.html</loc>
+    <loc>https://geomarker.io/cincy/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/ZCTAs.html</loc>
+    <loc>https://geomarker.io/cincy/reference/neigh_ccc.html</loc>
   </url>
   <url>
-    <loc>/reference/census_tracts.html</loc>
+    <loc>https://geomarker.io/cincy/reference/neigh_cchmc.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/neigh_cchmc.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tract_tigris_2000.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tract_tigris_2010.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tract_tigris_2020.html</loc>
+    <loc>https://geomarker.io/cincy/reference/neigh_sna.html</loc>
   </url>
 </urlset>
