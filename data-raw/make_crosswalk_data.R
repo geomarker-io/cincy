@@ -101,7 +101,8 @@ zctas_2020_to_2000 <- make_weights(zcta_tigris_2000 %>%
 
 # neighborhoods
 hamilton_tract_to_cincy_neighborhood <-
-  read_csv('data-raw/hamilton_tract_to_cincy_neighborhood.csv') %>%
+  read_csv('data-raw/hamilton_tract_to_cincy_neighborhood.csv',
+           col_types = list(col_character(), col_character(), col_character())) %>%
   rename(tract_fips = fips_tract_id)
 
 usethis::use_data(zcta_to_tract_2000, tract_to_zcta_2000,
