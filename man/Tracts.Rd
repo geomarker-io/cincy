@@ -16,7 +16,7 @@ An object of class \code{sf} (inherits from \code{data.frame}) with 226 rows and
 \source{
 \href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2000.html}{TIGER/Line Shapefile}
 
-\href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html}{TIGER/Line Shapefile}
+\href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html}{TIER/Line Shapefile}
 
 \href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2020.html}{TIGER/Line Shapefile}
 }
