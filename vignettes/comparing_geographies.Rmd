@@ -1,0 +1,140 @@
+---
+title: "Comparing {cincy} Geographies"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Comparing {cincy} Geographies}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+devtools::load_all()
+library(cincy)
+library(tidyverse)
+library(sf)
+```
+
+**TODO: add code comments or more steps**
+
+**TODO: clean up legend labels**
+
+**TODO: finish ZIP code code**
+
+**TODO: fix map size/resolution**
+
+# Census Tracts
+
+-   Census tracts are small statistical subdivisions of a county that only change every 10 years.
+
+-   Census tracts have a population of about 4,000 on average (max: 1,200; min: 8,000)
+
+-   Census tracts are the smallest unit of area with data available for most American Community Survey variables with reasonable margins of error.
+
+-   There were 230 census tracts recorded in Hamilton County in the 2000 census, 222 in the 2010 census, and 226 in the 2020 census.
+
+## Census Tract Deprivation Index
+
+-   To illustrate the differences among different geographies and how to aggregate geomarker values at one geography to another, we will use the [deprivation index](geomarker-io/dep_index).
+
+-   The deprivation index is a composite measure of material community deprivation constructed from the following 6 census tract level varaibles from the 2018 American Community Survey: fraction of population with income in past 12 months below poverty level, median household income in the past 12 months in 2018 inflation-adjusted dollars, fraction of population 25 and older with educational attainment of at least high school graduation (includes GED equivalency), fraction of population with no health insurance coverage, fraction of households receiving public assistance income or food stamps or SNAP in the past 12 months, and fraction of houses that are vacant.
+
+```{r}
+dep_index <- 'https://github.com/geomarker-io/dep_index/raw/master/2018_dep_index/ACS_deprivation_index_by_census_tracts.rds' %>% 
+    url() %>% 
+    gzcon() %>% 
+    readRDS() %>% 
+    as_tibble()
+
+cincy_dep_index <- left_join(cincy::tract_tigris_2010, 
+                             dep_index, 
+                             by = c("tract_fips" = "census_tract_fips"))
+
+cincy_dep_index <- st_transform(cincy_dep_index, 3735)
+
+library(tmap)
+
+tm_shape(cincy_dep_index) +
+  tm_polygons(col = "dep_index", 
+              pal = "viridis", 
+              style = "cont") +
+  tm_layout(frame = FALSE, 
+            legend.outside = TRUE)
+```
+
+# Neighborhoods
+
+-   Although census tracts approximate local neighborhoods, they are mostly based on population size. Neighborhood boundaries can be defined in other ways that may be more appropriate in the context of policy changes or interventions. Below are three different neighborhood definitions in the Cincinnati area.
+
+**TODO: define these**
+
+    + Cincinnati Community Council (CCC) Neighborhoods - covers city limits
+
+    + Statistical Neighborhood Approximations (SNA) Neighborhoods - sparse coverage within city limits
+
+    + Tract Boundary-Based Neighborhoods - covers entire county
+
+**TODO: some notes about how these compare/line up**
+
+```{r}
+cincy_neigh_dep_index <- cincy_dep_index %>% 
+  st_drop_geometry() %>% 
+  left_join(cincy:::hamilton_tract_to_cincy_neighborhood, 
+                             by = "tract_fips") %>% 
+  group_by(neighborhood) %>% 
+  summarize(neigh_dep_index = mean(dep_index, na.rm = TRUE))
+
+cincy_neigh_dep_index <- left_join(cincy::neigh_cchmc, cincy_neigh_dep_index, by = "neighborhood")
+cincy_neigh_dep_index <- st_transform(cincy_neigh_dep_index, 3735)
+
+tm_shape(cincy_neigh_dep_index) +
+  tm_polygons(col = "neigh_dep_index", 
+              pal = "viridis", 
+              style = "cont") +
+  tm_layout(frame = FALSE, 
+            legend.outside = TRUE)
+```
+
+# ZIP Codes
+
+-   ZIP Codes are not areal features, but rather identify the post office or metropolitan area delivery station associated with mailing addresses. 
+
+-   The U.S. Census defines ZIP Code areal boundaries using Zip Code Tabulation Areas (ZCTAs). ZCTAs are created by grouping census blocks based on the most frequent ZIP Code associated with addresses in that block.
+
+- Because ZIP Codes are part of postal addresses, ZCTAs are more easily attained from address records, and do not require geocoding and spatial overlays like other census geographies.
+
+-   However, ZCTAs are not based on population or contextual neighborhood boundaries as many other census geographies. Because ZIP Codes are based on the location of delivery post offices, millions of Americans currently use a mailing address that corresponds to a neighboring town, village, or neighborhood where they receive their mail from, instead of the jurisdiction where they actually live. Therefore, ZIP Codes do not always properly represent the environment of their inhabitants, and spatial analyses utilizing ZIP Codes have misled place-based health researchers. One notable example is the recent Flint drinking water crisis, where the misalignment of ZIP boundaries with the municipal boundaries of the City of Flint, Michigan caused researchers and public health officials to initially conclude that increased blood lead levels were not due to drinking water contamination.
+
+**Michigan figure? Or make a cincy figure? or point to app/dashboard for comparing geographies??**
+**TODO: make scale the same as other maps**
+
+```{r}
+cincy_zcta_dep_index <- cincy_dep_index %>% 
+  st_drop_geometry() %>% 
+  left_join(cincy:::tract_to_zcta_2010, 
+            by = "tract_fips") %>% 
+  group_by(zcta) %>% 
+  mutate(dep_index_wt = weight * dep_index) %>% 
+  summarize(zcta_dep_index = sum(dep_index_wt, na.rm = TRUE))
+
+
+cincy_zcta_dep_index <- left_join(cincy::zcta_tigris_2010, cincy_zcta_dep_index, by = "zcta")
+cincy_zcta_dep_index <- st_transform(cincy_zcta_dep_index, 3735)
+
+tm_shape(cincy_zcta_dep_index) +
+  tm_polygons(col = "zcta_dep_index", 
+              pal = "viridis", 
+              style = "cont") +
+  tm_layout(frame = FALSE, 
+            legend.outside = TRUE)
+```
+
+
+<https://www2.census.gov/geo/pdfs/education/CensusTracts.pdf> 
+<https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html>
