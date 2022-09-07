@@ -3,18 +3,20 @@
 \docType{data}
 \name{neigh_cchmc}
 \alias{neigh_cchmc}
-\title{Neighborhoods (CCHMC)}
+\title{Neighborhood: CCHMC}
 \format{
 An object of class \code{sf} (inherits from \code{tbl_df}, \code{tbl}, \code{data.frame}) with 81 rows and 2 columns.
 }
 \source{
-See \code{data-raw/hamilton_tract_to_cincy_neighborhood.csv}
+See \code{data-raw/hamilton_tract_to_cincy_neighborhood.csv} for tract to neighborhood lookup table
 }
 \usage{
 neigh_cchmc
 }
 \description{
-Neighborhood derived from CCHMC internally-used lookup table for
-2010 census tract identifier to neighborhood
+Neighborhood: CCHMC
+}
+\examples{
+plot(neigh_cchmc)
 }
 \keyword{datasets}
