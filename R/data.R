@@ -1,25 +1,19 @@
-#' @importFrom sf st_sf
-NULL
-
 #' ZCTAs
 #'
 #' [ZIP Code Tabulation Areas (ZCTAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html)
 #' for Ohio that (at least partially) intersect with Hamilton County from 2000, 2010, and 2020.
-#' @details ZCTAs were downloaded directly from the Census Bureau using the [tigris](https://github.com/walkerke/tigris) package
+#' @source ZCTAs were downloaded directly from the Census Bureau using the [tigris](https://github.com/walkerke/tigris) package
 
 #' ZCTA (2000 TIGER/Line)
 #' @rdname ZCTAs
-#' @source [TIGER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2000.html)
 "zcta_tigris_2000"
 
 #' ZCTA (2010 TIGER/Line)
 #' @rdname ZCTAs
-#' @source [TIGER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html)
 "zcta_tigris_2010"
 
 #' ZCTA (2020 TIGER/Line)
 #' @rdname ZCTAs
-#' @source [TIGER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2020.html)
 "zcta_tigris_2020"
 
 #' Tracts
@@ -42,26 +36,47 @@ NULL
 #' @source [TIGER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2020.html)
 "tract_tigris_2020"
 
-#' Neighborhoods
-#'
-#' Neighborhoods for Hamilton County defined in [CAGIS](http://cagismaps.hamilton-co.org/cagisportal) [Open Data](http://cagis.org/Opendata/?)
-
-#' Cincinnati Community Council (CCC) Neighborhoods
-#' @rdname Neighborhoods
+#' Neighborhood: Cincinnati Community Council (CCC)
+#' @source [CAGIS](http://cagismaps.hamilton-co.org/cagisportal)
+#' [Open Data](http://cagis.org/Opendata/?) Community Council (CCC) Neighborhoods
+#' @examples
+#' plot(neigh_ccc)
 "neigh_ccc"
 
-#' Cincinnati Statistical Neighborhood Approximations (SNA)
-#' @rdname Neighborhoods
+#' Neighborhood: Statistical Neighborhood Approximations (SNA)
+#' @source [CAGIS](http://cagismaps.hamilton-co.org/cagisportal)
+#' [Open Data](http://cagis.org/Opendata/?) Community Council (CCC) Neighborhoods
+#' @examples
+#' plot(neigh_sna)
 "neigh_sna"
 
-#' Neighborhoods (CCHMC)
-#'
-#' Neighborhood derived from CCHMC internally-used lookup table for
-#' 2010 census tract identifier to neighborhood
-#' @source See `data-raw/hamilton_tract_to_cincy_neighborhood.csv`
+#' Neighborhood: CCHMC
+#' @source See `data-raw/hamilton_tract_to_cincy_neighborhood.csv` for tract to neighborhood lookup table
+#' @examples
+#' plot(neigh_cchmc)
 "neigh_cchmc"
 
-#' CODEC Counties
-#' @rdname Counties
-"codec_counties"
+#' Counties
+#'
+#' County groupings are derived from CCHMC operational definitions
+#' @source see data-raw/data.R for county FIPS listed for each grouping
 
+#' Southwest Ohio
+#' @rdname Counties
+"county_swoh_2010"
+
+#' Healthvine
+#' @rdname Counties
+"county_hlthv_2010"
+
+#' Healthvine Tristate
+#' @rdname Counties
+"county_hlthvts_2010"
+
+#' 7 County Catchment
+#' @rdname Counties
+"county_7cc_2010"
+
+#' 8 County Catchment
+#' @rdname Counties
+"county_8cc_2010"

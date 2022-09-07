@@ -14,11 +14,12 @@ Depends:
 LazyData: true
 Imports: 
     dplyr,
-    rlang,
     sf
 Suggests: 
     knitr,
     rmarkdown,
+    roxygen2,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+URL: https://geomarker.io/cincy/
