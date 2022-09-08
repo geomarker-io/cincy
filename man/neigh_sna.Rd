@@ -17,7 +17,4 @@ neigh_sna
 \description{
 Neighborhood: Statistical Neighborhood Approximations (SNA)
 }
-\examples{
-plot(neigh_sna)
-}
 \keyword{datasets}

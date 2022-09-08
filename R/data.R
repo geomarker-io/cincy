@@ -39,21 +39,15 @@
 #' Neighborhood: Cincinnati Community Council (CCC)
 #' @source [CAGIS](http://cagismaps.hamilton-co.org/cagisportal)
 #' [Open Data](http://cagis.org/Opendata/?) Community Council (CCC) Neighborhoods
-#' @examples
-#' plot(neigh_ccc)
 "neigh_ccc"
 
 #' Neighborhood: Statistical Neighborhood Approximations (SNA)
 #' @source [CAGIS](http://cagismaps.hamilton-co.org/cagisportal)
 #' [Open Data](http://cagis.org/Opendata/?) Community Council (CCC) Neighborhoods
-#' @examples
-#' plot(neigh_sna)
 "neigh_sna"
 
 #' Neighborhood: CCHMC
 #' @source See `data-raw/hamilton_tract_to_cincy_neighborhood.csv` for tract to neighborhood lookup table
-#' @examples
-#' plot(neigh_cchmc)
 "neigh_cchmc"
 
 #' Counties

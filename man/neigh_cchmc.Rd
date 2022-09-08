@@ -16,7 +16,4 @@ neigh_cchmc
 \description{
 Neighborhood: CCHMC
 }
-\examples{
-plot(neigh_cchmc)
-}
 \keyword{datasets}

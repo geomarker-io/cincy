@@ -17,7 +17,4 @@ neigh_ccc
 \description{
 Neighborhood: Cincinnati Community Council (CCC)
 }
-\examples{
-plot(neigh_ccc)
-}
 \keyword{datasets}
