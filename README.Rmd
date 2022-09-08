@@ -14,30 +14,43 @@ The `cincy` package contains simple feature geographic polygon files (`sf` objec
 
 #### Installing
 
-```{r, eval = F}
+```{r, eval = FALSE}
 # install.packages("remotes")
 remotes::install_github("geomarker-io/cincy")
 ```
 
 #### Data
 
-Objects are named by geography, source, and optionally vintage:
+Data objects are `data.frame`s of class `sf` and are named by geography, source, and optionally vintage:
 
-```{r}
-data(package = "cincy")$results[ , "Item"]
+```{r, echo = FALSE, warning = FALSE}
+options(knitr.kable.NA = "")
+data(package = "cincy")$results[ , "Item"] |>
+                        tibble::as_tibble() |>
+                        dplyr::rename(name = value) |>
+                        tidyr::separate(name, into = c("geography", "source", "vintage"), remove = FALSE) |>
+                        dplyr::arrange(rev(name), vintage) |>
+                        dplyr::mutate(name = paste0("`", name, "`")) |>
+                        knitr::kable(align = c("lccc"))
 ```
 
-Use autocomplete functionality at the `R` prompt (e.g., typing `cincy::` and pressing `TAB` twice) to find the needed `sf` object, narrowing first based on geography (`tract`, `zcta`, `neigh`), source, and optionally vintage.
+Use autocomplete functionality at the `R` prompt (e.g., typing `cincy::` and pressing `TAB` twice) to find the needed `sf` object, narrowing first based on geography (`tract`, `zcta`, `neigh`, `county`), then by source, and then optionally by vintage.
 
 Consult the help file for any object for more information on the data within it:
 
-```{r}
+```{r, eval = FALSE}
 ?cincy::neigh_ccc
 ```
 
-Or explore the dataset reference documentation online at [https://geomarker.io/cincy/reference](https://geomarker.io/cincy/reference)
+Or explore the data documentation online at [https://geomarker.io/cincy/reference](https://geomarker.io/cincy/reference)
 
 #### Examples
+
+Data are returned as simple features objects.
+
+```{r}
+library(sf)
+```
 
 For example, to get Cincinnati neighborhoods, as defined by the most recent version of community council boundaries from CAGIS:
 
@@ -50,5 +63,12 @@ Or to get Cincinnati ZIP Codes, as defined by the Census Bureau as ZIP Code Tabu
 ```{r}
 cincy::zcta_tigris_2000
 ```
+
+Alternatively, get the 2010 Counties in Cincinnati's 7-county catchment area:
+
+```{r}
+cincy::county_7cc_2010
+```
+
 
 
