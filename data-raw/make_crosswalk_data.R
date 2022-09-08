@@ -1,23 +1,29 @@
 library(sf)
 library(dplyr)
 
-make_weights <- function(poly1, poly2, key) {
-  poly1$p1_area <- as.numeric(st_area(poly1))
+make_weights <- function(poly_from = tract_tigris_2010, poly_to = zcta_tigris_2010, key = zcta) {
+  # ensure both polygons are projected to epsg 5072 before calculating weights
+  stopifnot(st_crs(poly_from) == st_crs(5072) && st_crs(poly_to) == st_crs(5072))
 
-  poly_intersections <-
-    st_intersection(poly1, poly2) %>%
-    mutate(area = as.numeric(st_area(.))) %>%
-    filter(area > 0) %>%
-    mutate(weight = area/p1_area) %>%
-    st_drop_geometry() %>%
-    arrange({{key}}) %>%
-    select(-p1_area, -area) %>%
+  poly_to$poly_to_area <- st_area(poly_to)
 
-  return(poly_intersections)
+  poly_int <- st_intersection(poly_to, poly_from)
+  poly_int$poly_int_area <- st_area(poly_int)
+
+  poly_int |>
+    st_drop_geometry() |>
+    tibble::as_tibble() |>
+    filter(as.numeric(poly_int_area) > 0) |>
+    group_by({{ key }}) |>
+    mutate(weight = (poly_int_area / poly_to_area) / sum((poly_int_area / poly_to_area))) |>
+    select(-poly_to_area, -poly_int_area) |>
+    dplyr::arrange({{ key }}) |>
+    dplyr::relocate({{ key }}) |>
+    dplyr::ungroup()
 }
 
-zcta_to_tract_2000 <- make_weights(tract_tigris_2000, zcta_tigris_2000, key = tract_fips)
-tract_to_zcta_2000 <- make_weights(zcta_tigris_2000, tract_tigris_2000, key = zcta)
+zcta_to_tract_2000 <- make_weights(zcta_tigris_2000, tract_tigris_2000, key = zcta)
+tract_to_zcta_2000 <- make_weights(tract_tigris_2000, zcta_tigris_2000, key = zcta)
 
 zcta_to_tract_2010 <- make_weights(tract_tigris_2010, zcta_tigris_2010, key = tract_fips)
 tract_to_zcta_2010 <- make_weights(zcta_tigris_2010, tract_tigris_2010, key = zcta)
