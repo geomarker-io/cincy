@@ -33,4 +33,13 @@
   <url>
     <loc>https://geomarker.io/cincy/reference/neigh_sna.html</loc>
   </url>
+  <url>
+    <loc>https://geomarker.io/cincy/reference/zcta_tigris_2000.html</loc>
+  </url>
+  <url>
+    <loc>https://geomarker.io/cincy/reference/zcta_tigris_2010.html</loc>
+  </url>
+  <url>
+    <loc>https://geomarker.io/cincy/reference/zcta_tigris_2020.html</loc>
+  </url>
 </urlset>
