@@ -1,9 +1,10 @@
 Package: cincy
 Title: Cincinnati Neighborhood, Tract, County, and ZIP Code Geographies
 Version: 0.1
-Authors@R: 
-    person("Cole", "Brokamp", , "cole.brokamp@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-0289-3151"))
+Authors@R: c(
+    person("Cole", "Brokamp", , "cole.brokamp@gmail.com", role = c("aut", "cre")),
+    person("Erika", "Rasnick", role = c("aut"))
+           )
 Description: Provide simple feature (sf) objects for Cincinnati neighborhood, tract, county, and ZIP code geographies.
 License: GPL (>= 3)
 Encoding: UTF-8
