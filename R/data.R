@@ -1,3 +1,6 @@
+#' @importFrom sf st_as_sf
+NULL
+
 #' ZCTAs
 #'
 #' [ZIP Code Tabulation Areas (ZCTAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html)
