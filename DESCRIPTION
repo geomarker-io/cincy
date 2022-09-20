@@ -16,3 +16,6 @@ LazyData: true
 URL: https://geomarker.io/cincy/
 Imports: 
     sf
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
