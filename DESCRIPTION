@@ -15,7 +15,12 @@ Depends:
 LazyData: true
 URL: https://geomarker.io/cincy/
 Imports: 
-    sf
+    dplyr,
+    rlang (>= 0.4.11),
+    sf,
+    tibble,
+    tidyselect
 Suggests: 
+    roxygen2,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
