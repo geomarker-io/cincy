@@ -23,3 +23,9 @@ Weights at the census block level are used to spatially interpolate different ge
 Block-level total population, total number of homes, or total area from the 2020 Census
 can be chosen to use for the weights.
 }
+\examples{
+# interpolate 2018 deprivation index to ZIP code level
+interpolate(dep_index, cincy::zcta_tigris_2010, "pop")
+# interpolate 2018 deprivation index to  2020 census tracts
+interpolate(dep_index, cincy::tract_tigris_2020, "pop")
+}

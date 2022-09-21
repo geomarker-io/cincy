@@ -11,6 +11,11 @@
 #' @param to sf object of target geography (**must** be one of the cincy:: geography objects)
 #' @param weights use one of "pop" (population), "homes", or "area" from the
 #' 2020 census block estimates to interpolate the values
+#' @examples
+#' # interpolate 2018 deprivation index to ZIP code level
+#' interpolate(dep_index, cincy::zcta_tigris_2010, "pop")
+#' # interpolate 2018 deprivation index to  2020 census tracts
+#' interpolate(dep_index, cincy::tract_tigris_2020, "pop")
 #' @export
 interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
 

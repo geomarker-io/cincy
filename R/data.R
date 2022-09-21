@@ -53,6 +53,13 @@ NULL
 #' @source See `data-raw/hamilton_tract_to_cincy_neighborhood.csv` for tract to neighborhood lookup table
 "neigh_cchmc"
 
+#' Deprivation Index
+#' 
+#' An example census tract-level dataset.  A simple features object of all census tracts in
+#' Hamilton County, OH with values for the 2018 deprivation index and its six components.
+#' @source The [2018 deprivation_index](https://geomarker.io/dep_index/2018_dep_index/). See `data-raw/make_dep_index_data.R`.
+"dep_index"
+
 #' Counties
 #'
 #' County groupings are derived from CCHMC operational definitions

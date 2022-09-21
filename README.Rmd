@@ -25,13 +25,15 @@ Data objects are `data.frame`s of class `sf` and are named by geography, source,
 
 ```{r, echo = FALSE, warning = FALSE}
 options(knitr.kable.NA = "")
-data(package = "cincy")$results[ , "Item"] |>
+data(package = "cincy")$results[, "Item"] |>
                         tibble::as_tibble() |>
                         dplyr::rename(name = value) |>
                         tidyr::separate(name, into = c("geography", "source", "vintage"), remove = FALSE) |>
+                        dplyr::filter(! name == "dep_index") |>
                         dplyr::arrange(rev(name), vintage) |>
                         dplyr::mutate(name = paste0("`", name, "`")) |>
-                        knitr::kable(align = c("lccc"))
+                        knitr::kable(align = c("lccc")) |>
+                        suppressWarnings()
 ```
 
 Use autocomplete functionality at the `R` prompt (e.g., typing `cincy::` and pressing `TAB` twice) to find the needed `sf` object, narrowing first based on geography (`tract`, `zcta`, `neigh`, `county`), then by source, and then optionally by vintage.
