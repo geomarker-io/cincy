@@ -1,6 +1,6 @@
 Package: cincy
 Title: Cincinnati Neighborhood, Tract, County, and ZIP Code Geographies
-Version: 0.1
+Version: 0.1.1
 Authors@R: c(
     person("Cole", "Brokamp", , "cole.brokamp@gmail.com", role = c("aut", "cre")),
     person("Erika", "Rasnick", role = c("aut"))

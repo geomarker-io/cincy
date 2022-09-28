@@ -73,7 +73,7 @@ interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
     dplyr::group_by(!!rlang::sym(to_id)) |>
     dplyr::summarize(
       dplyr::across(
-        tidyselect::starts_with("fraction"),
+        tidyselect::starts_with(c("fraction_", "median_")),
         .fns = ~weighted.mean(.x, w = intersection_value, na.rm = TRUE)
       )
     )
@@ -87,13 +87,13 @@ interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
     dplyr::group_by(!!rlang::sym(to_id)) |>
     dplyr::mutate(
       dplyr::across(
-        tidyselect::starts_with(c("n_", "median_")),
+        tidyselect::starts_with(c("n_")),
         .fns = ~(.x * weight_coef))) |>
     dplyr::select(-weight_coef) |>
     dplyr::group_by(!!rlang::sym(to_id)) |>
     dplyr::summarize(
       dplyr::across(
-        tidyselect::starts_with(c("n_", "median_")),
+        tidyselect::starts_with(c("n_")),
         .fns = ~sum(.x, na.rm = TRUE)))
 
   out_data <- dplyr::left_join(to_non_extensive, to_extensive, by = to_id)
