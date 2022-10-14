@@ -1,0 +1,115 @@
+---
+title: "Spatial Interpolation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Spatial Interpolation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(cincy)
+```
+
+Spatial interpolation is the process of transforming data from one spatial resolution to another. The `cincy::interpolate` function uses census block group level weights to interpolate data from one `cincy` geography to another `cincy` geography. Variables prefixed with `n_` will be interpolated extensively (weighted sum), and all other numeric variables will be interpolated intensively (weighted mean).
+
+Here, we interpolate `fraction_poverty` from the 2018 American Community Survey from 2010 census tracts to 2010 ZCTAs.
+
+**Census Tract Fraction Poverty**
+
+```{r}
+library(cincy)
+library(dplyr)
+library(sf)
+library(tmap)
+
+d_tract <- st_transform(cincy::dep_index, 3735) |>
+  select(census_tract_id = tract_fips, fraction_poverty)
+
+d_tract
+```
+
+```{r}
+#| echo: false
+#| fig-align: center
+d_tract |> 
+  tm_shape() +
+  tm_polygons("fraction_poverty", 
+              pal = "viridis", 
+              style = "cont", 
+              title = "Fraction Poverty", 
+              breaks = seq(0, 1, 0.2)) +
+  tm_layout(frame = FALSE, 
+            legend.outside = TRUE)
+```
+
+## Interpolating to ZCTA
+
+The `cincy::interpolate` function allows the user to choose from three sets of weights to be used for the weighted sums and/or averages: block group population, block group number of homes, and block group area.
+
+**Population Weights**
+
+```{r}
+d_zcta_pop <- 
+  d_tract |>
+  cincy::interpolate(to = cincy::zcta_tigris_2010, weights = "pop") |>
+  st_transform(3735)
+
+d_zcta_pop
+```
+
+```{r}
+#| echo: false
+d_zcta_pop |>
+  tm_shape() +
+  tm_polygons("fraction_poverty", 
+              pal = "viridis", 
+              style = "cont", 
+              title = "Fraction Poverty", 
+              breaks = seq(0, 1, 0.2)) +
+  tm_layout(frame = FALSE, 
+            legend.outside = TRUE)
+```
+
+**Number of Homes Weights**
+
+```{r}
+d_zcta_homes <- 
+  d_tract |>
+  cincy::interpolate(to = cincy::zcta_tigris_2010, weights = "homes") |>
+  st_transform(3735)
+```
+
+**Area Weights**
+
+```{r}
+d_zcta_area <- 
+  d_tract |>
+  cincy::interpolate(to = cincy::zcta_tigris_2010, weights = "area") |>
+  st_transform(3735)
+```
+
+**Comparing Interpolated Fraction Poverty Using Different Weights**
+
+```{r}
+#| echo: false
+library(GGally)
+
+d_zcta <- 
+  d_zcta_pop |>
+  st_drop_geometry() |>
+  rename(population = fraction_poverty) |>
+  left_join(d_zcta_homes |> st_drop_geometry(), by = "zcta") |>
+  rename(homes = fraction_poverty) |>
+  left_join(d_zcta_area |>  st_drop_geometry(), by = "zcta") |>
+  rename(area = fraction_poverty)
+
+ggpairs(d_zcta |> select(-zcta))
+```
