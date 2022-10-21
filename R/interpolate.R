@@ -1,11 +1,11 @@
 #' Spatially interpolate community-level data
 #'
-#' This function will interpolate only *numeric* variables with names starting with
-#' `n_`, `median_`, or `fraction_`.  Internally, `fraction_` and `median_` variables
-#' are interpolated *non-extensively*, but `n_` variables are interpolated *extensively*.
 #' Weights at the census block level are used to spatially interpolate different geographies.
 #' Block-level total population, total number of homes, or total area from the 2020 Census
 #' can be chosen to use for the weights.
+#' All *numeric* variables in `from` are interpolated *non-extensively*,
+#' except for any numeric variables that start with `n_`, which are interpolated
+#' *extensively*.
 #' @param from sf object with a neighborhood, census tract, or zcta column and
 #' numeric values to be interpolated into target geographies
 #' @param to sf object of target geography (**must** be one of the cincy:: geography objects)
@@ -73,10 +73,14 @@ interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
     dplyr::group_by(!!rlang::sym(to_id)) |>
     dplyr::summarize(
       dplyr::across(
-        tidyselect::starts_with(c("fraction_", "median_")),
+        tidyselect::vars_select_helpers$where(is.numeric),
         .fns = ~weighted.mean(.x, w = intersection_value, na.rm = TRUE)
       )
     )
+
+  to_non_extensive$intersection_value <- NULL
+  to_non_extensive$weight_coef <- NULL
+  to_non_extensive <- dplyr::select(to_non_extensive, -tidyselect::starts_with(c("n_")))
 
   to_extensive <-
     from |>

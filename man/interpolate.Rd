@@ -16,12 +16,12 @@ numeric values to be interpolated into target geographies}
 2020 census block estimates to interpolate the values}
 }
 \description{
-This function will interpolate only \emph{numeric} variables with names starting with
-\code{n_}, \code{median_}, or \code{fraction_}.  Internally, \code{fraction_} and \code{median_} variables
-are interpolated \emph{non-extensively}, but \code{n_} variables are interpolated \emph{extensively}.
 Weights at the census block level are used to spatially interpolate different geographies.
 Block-level total population, total number of homes, or total area from the 2020 Census
 can be chosen to use for the weights.
+All \emph{numeric} variables in \code{from} are interpolated \emph{non-extensively},
+except for any numeric variables that start with \code{n_}, which are interpolated
+\emph{extensively}.
 }
 \examples{
 # interpolate 2018 deprivation index to ZIP code level
