@@ -60,27 +60,92 @@ NULL
 #' @source The [2018 deprivation_index](https://geomarker.io/dep_index/2018_dep_index/). See `data-raw/make_dep_index_data.R`.
 "dep_index"
 
-#' Counties
+#' Counties: Southwest Ohio
 #'
 #' County groupings are derived from CCHMC operational definitions
 #' @source see data-raw/data.R for county FIPS listed for each grouping
-
-#' Southwest Ohio
-#' @rdname Counties
+#' @format
+#' A simple features data frame with 4 rows and 6 columns:
+#' \describe{
+#'   \item{county_name}{County Name}
+#'   \item{county_id}{County ID}
+#'   \item{state_name}
+#'   \item{state_id}
+#'   \item{geoid}{GEOID (state_id + county_id)}
+#'   \item{geometry} simple features geometry column
+#' }
+#' @examples
+#' plot(county_swoh_2010["county_name"], key.pos = 1)
 "county_swoh_2010"
 
-#' Healthvine
-#' @rdname Counties
+#' Counties: Healthvine
+#'
+#' County groupings are derived from CCHMC operational definitions
+#' @source see data-raw/data.R for county FIPS listed for each grouping
+#' @format
+#' A simple features data frame with 15 rows and 6 columns:
+#' \describe{
+#'   \item{county_name}{County Name}
+#'   \item{county_id}{County ID}
+#'   \item{state_name}
+#'   \item{state_id}
+#'   \item{geoid}{GEOID (state_id + county_id)}
+#'   \item{geometry} simple features geometry column
+#' }
+#' @examples
+#' plot(county_hlthv_2010["county_name"], key.pos = 1)
 "county_hlthv_2010"
 
-#' Healthvine Tristate
-#' @rdname Counties
-"county_hlthvts_2010"
+#' Counties: Healthvine (in Ohio)
+#'
+#' County groupings are derived from CCHMC operational definitions
+#' @source see data-raw/data.R for county FIPS listed for each grouping
+#' @format
+#' A simple features data frame with 8 rows and 6 columns:
+#' \describe{
+#'   \item{county_name}{County Name}
+#'   \item{county_id}{County ID}
+#'   \item{state_name}
+#'   \item{state_id}
+#'   \item{geoid}{GEOID (state_id + county_id)}
+#'   \item{geometry} simple features geometry column
+#' }
+#' @examples
+#' plot(county_hlthvoh_2010["county_name"], key.pos = 1)
+"county_hlthvoh_2010"
 
-#' 7 County Catchment
-#' @rdname Counties
+#' Counties: 7 County Region
+#'
+#' County groupings are derived from CCHMC operational definitions
+#' @source see data-raw/data.R for county FIPS listed for each grouping
+#' @format
+#' A simple features data frame with 7 rows and 6 columns:
+#' \describe{
+#'   \item{county_name}{County Name}
+#'   \item{county_id}{County ID}
+#'   \item{state_name}
+#'   \item{state_id}
+#'   \item{geoid}{GEOID (state_id + county_id)}
+#'   \item{geometry} simple features geometry column
+#' }
+#' @examples
+#' plot(county_7cc_2010["county_name"], key.pos = 1)
 "county_7cc_2010"
 
-#' 8 County Catchment
-#' @rdname Counties
+#' Counties: 8 County Region
+#'
+#' County groupings are derived from CCHMC operational definitions
+#' @source see data-raw/data.R for county FIPS listed for each grouping
+#' @format
+#' A simple features data frame with 8 rows and 6 columns:
+#' \describe{
+#'   \item{county_name}{County Name}
+#'   \item{county_id}{County ID}
+#'   \item{state_name}
+#'   \item{state_id}
+#'   \item{geoid}{GEOID (state_id + county_id)}
+#'   \item{geometry} simple features geometry column
+#' }
+#' @examples
+#' plot(county_8cc_2010["county_name"], key.pos = 1)
 "county_8cc_2010"
