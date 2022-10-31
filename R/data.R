@@ -51,7 +51,7 @@ NULL
 
 #' Neighborhood: CCHMC
 #' @source See `data-raw/hamilton_tract_to_cincy_neighborhood.csv` for tract to neighborhood lookup table
-"neigh_cchmc"
+"neigh_cchmc_2010"
 
 #' Deprivation Index
 #' 

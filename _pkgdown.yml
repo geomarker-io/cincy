@@ -19,7 +19,7 @@ reference:
   contents:
   - neigh_ccc
   - neigh_sna
-  - neigh_cchmc
+  - neigh_cchmc_2010
 - title: Interpolate
   contents:
   - interpolate
