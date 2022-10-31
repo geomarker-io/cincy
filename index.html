@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">cincy</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,7 @@
 <div class="page-header"><h1 id="cincy">cincy<a class="anchor" aria-label="anchor" href="#cincy"></a>
 </h1></div>
 <!-- badges: start -->
+
 <p>The <code>cincy</code> package contains simple feature geographic polygon files (<code>sf</code> objects) that define Cincinnati Neighborhood, Tract, County, and ZIP Code Geographies.</p>
 <div class="section level4">
 <h4 id="installing">Installing<a class="anchor" aria-label="anchor" href="#installing"></a>
@@ -117,10 +118,10 @@
 <td align="center"></td>
 </tr>
 <tr class="even">
-<td align="left"><code>neigh_cchmc</code></td>
+<td align="left"><code>neigh_cchmc_2010</code></td>
 <td align="center">neigh</td>
 <td align="center">cchmc</td>
-<td align="center"></td>
+<td align="center">2010</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>neigh_ccc</code></td>
@@ -135,9 +136,9 @@
 <td align="center">2010</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>county_hlthvts_2010</code></td>
+<td align="left"><code>county_hlthvoh_2010</code></td>
 <td align="center">county</td>
-<td align="center">hlthvts</td>
+<td align="center">hlthvoh</td>
 <td align="center">2010</td>
 </tr>
 <tr class="even">
@@ -179,20 +180,20 @@
 <div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 75 features and 1 field</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Geometry type: GEOMETRY</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Dimension:     XY</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Bounding box:  xmin: 964487.7 ymin: 1841115 xmax: 994472.8 ymax: 1859227</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Bounding box:  xmin: 964487.9 ymin: 1841115 xmax: 994473.1 ymax: 1859227</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Projected CRS: NAD83(NSRS2007) / Conus Albers</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="do">## First 10 features:</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="do">##                    neighborhood                          SHAPE</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 1                 Paddock Hills MULTIPOLYGON (((983858.2 18...</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 2          Corryville - Heights MULTIPOLYGON (((981244.3 18...</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 3            South Cumminsville MULTIPOLYGON (((978487 1850...</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 4     Avondale - North Avondale MULTIPOLYGON (((982119.8 18...</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 5                    Corryville MULTIPOLYGON (((981595.5 18...</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 6          Spring Grove Village MULTIPOLYGON (((978574 1854...</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 7            CUF - Mount Auburn MULTIPOLYGON (((981415.8 18...</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 8  Columbia Tusculum - East End MULTIPOLYGON (((987788.1 18...</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 9                 Mount Lookout MULTIPOLYGON (((988777.9 18...</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 10      Riverside - Sayler Park MULTIPOLYGON (((967897.7 18...</span></span></code></pre></div>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 1                 Paddock Hills MULTIPOLYGON (((983858.4 18...</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 2          Corryville - Heights MULTIPOLYGON (((981244.6 18...</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 3            South Cumminsville MULTIPOLYGON (((978487.3 18...</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 4     Avondale - North Avondale MULTIPOLYGON (((982120.1 18...</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 5                    Corryville MULTIPOLYGON (((981595.8 18...</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 6          Spring Grove Village MULTIPOLYGON (((978574.3 18...</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 7            CUF - Mount Auburn MULTIPOLYGON (((981416 1848...</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 8  Columbia Tusculum - East End MULTIPOLYGON (((987788.4 18...</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 9                 Mount Lookout MULTIPOLYGON (((988778.2 18...</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 10      Riverside - Sayler Park MULTIPOLYGON (((967897.9 18...</span></span></code></pre></div>
 <p>Or to get Cincinnati ZIP Codes, as defined by the Census Bureau as ZIP Code Tabulation Areas (ZCTAs), from 2000:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="reference/ZCTAs.html">zcta_tigris_2000</a></span></span></code></pre></div>
@@ -215,27 +216,27 @@
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 45204 MULTIPOLYGON (((976776.5 18...</span></span></code></pre></div>
 <p>Alternatively, get the 2010 Counties in Cincinnati’s 7-county catchment area:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="reference/Counties.html">county_7cc_2010</a></span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="reference/county_7cc_2010.html">county_7cc_2010</a></span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Simple feature collection with 7 features and 5 fields</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Geometry type: MULTIPOLYGON</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Dimension:     XY</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Bounding box:  xmin: 820828.6 ymin: 1568467 xmax: 1079275 ymax: 1903358</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Bounding box:  xmin: 949713.7 ymin: 1808108 xmax: 1025618 ymax: 1903358</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Projected CRS: NAD83(NSRS2007) / Conus Albers</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="do">##   county_name county_id state_name state_id geoid</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 1    Highland       071         OH       39 39071</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">## 1      Butler       017         OH       39 39017</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 2    Hamilton       061         OH       39 39061</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="do">## 3    Clermont       025         OH       39 39025</span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 4      Warren       165         OH       39 39165</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 5       Boone       015         KY       21 21015</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 6      Warren       227         KY       21 21227</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="do">## 5      Kenton       117         KY       21 21117</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="do">## 6       Boone       015         KY       21 21015</span></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 7    Campbell       037         KY       21 21037</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="do">##                         geometry</span></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 MULTIPOLYGON (((1049993 188...</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 MULTIPOLYGON (((968901.4 18...</span></span>
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="do">## 2 MULTIPOLYGON (((954168.6 18...</span></span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="do">## 3 MULTIPOLYGON (((1002941 186...</span></span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="do">## 4 MULTIPOLYGON (((991479.4 18...</span></span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 MULTIPOLYGON (((953225.9 18...</span></span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 MULTIPOLYGON (((827128.2 15...</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="do">## 5 MULTIPOLYGON (((974627.4 18...</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="do">## 6 MULTIPOLYGON (((953225.9 18...</span></span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="do">## 7 MULTIPOLYGON (((990745 1832...</span></span></code></pre></div>
 </div>
 </div>
@@ -267,6 +268,7 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/geomarker-io/cincy/actions" class="external-link"><img src="https://github.com/geomarker-io/cincy/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/geomarker-io/cincy/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/geomarker-io/cincy/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 

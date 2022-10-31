@@ -1,8 +1,8 @@
-pandoc: 2.14.2
+pandoc: 2.19.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-10-21T19:25Z
+last_built: 2022-10-31T18:14Z
 urls:
   reference: https://geomarker.io/cincy/reference
   article: https://geomarker.io/cincy/articles
