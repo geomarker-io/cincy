@@ -69,10 +69,10 @@ NULL
 #' \describe{
 #'   \item{county_name}{County Name}
 #'   \item{county_id}{County ID}
-#'   \item{state_name}
-#'   \item{state_id}
+#'   \item{state_name}{State Name}
+#'   \item{state_id}{State ID}
 #'   \item{geoid}{GEOID (state_id + county_id)}
-#'   \item{geometry} simple features geometry column
+#'   \item{geometry}{simple features geometry column}
 #' }
 #' @examples
 #' plot(county_swoh_2010["county_name"], key.pos = 1)
@@ -87,10 +87,10 @@ NULL
 #' \describe{
 #'   \item{county_name}{County Name}
 #'   \item{county_id}{County ID}
-#'   \item{state_name}
-#'   \item{state_id}
+#'   \item{state_name}{State Name}
+#'   \item{state_id}{State ID}
 #'   \item{geoid}{GEOID (state_id + county_id)}
-#'   \item{geometry} simple features geometry column
+#'   \item{geometry}{simple features geometry column}
 #' }
 #' @examples
 #' plot(county_hlthv_2010["county_name"], key.pos = 1)
@@ -105,10 +105,10 @@ NULL
 #' \describe{
 #'   \item{county_name}{County Name}
 #'   \item{county_id}{County ID}
-#'   \item{state_name}
-#'   \item{state_id}
+#'   \item{state_name}{State Name}
+#'   \item{state_id}{State ID}
 #'   \item{geoid}{GEOID (state_id + county_id)}
-#'   \item{geometry} simple features geometry column
+#'   \item{geometry}{simple features geometry column}
 #' }
 #' @examples
 #' plot(county_hlthvoh_2010["county_name"], key.pos = 1)
@@ -123,10 +123,10 @@ NULL
 #' \describe{
 #'   \item{county_name}{County Name}
 #'   \item{county_id}{County ID}
-#'   \item{state_name}
-#'   \item{state_id}
+#'   \item{state_name}{State Name}
+#'   \item{state_id}{State ID}
 #'   \item{geoid}{GEOID (state_id + county_id)}
-#'   \item{geometry} simple features geometry column
+#'   \item{geometry}{simple features geometry column}
 #' }
 #' @examples
 #' plot(county_7cc_2010["county_name"], key.pos = 1)
@@ -141,10 +141,10 @@ NULL
 #' \describe{
 #'   \item{county_name}{County Name}
 #'   \item{county_id}{County ID}
-#'   \item{state_name}
-#'   \item{state_id}
+#'   \item{state_name}{State Name}
+#'   \item{state_id}{State ID}
 #'   \item{geoid}{GEOID (state_id + county_id)}
-#'   \item{geometry} simple features geometry column
+#'   \item{geometry}{simple features geometry column}
 #' }
 #' @examples
 #' plot(county_8cc_2010["county_name"], key.pos = 1)

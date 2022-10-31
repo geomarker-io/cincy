@@ -9,10 +9,10 @@ A simple features data frame with 7 rows and 6 columns:
 \describe{
 \item{county_name}{County Name}
 \item{county_id}{County ID}
-\item{state_name}
-\item{state_id}
+\item{state_name}{State Name}
+\item{state_id}{State ID}
 \item{geoid}{GEOID (state_id + county_id)}
-\item{geometry} simple features geometry column
+\item{geometry}{simple features geometry column}
 }
 }
 \source{
