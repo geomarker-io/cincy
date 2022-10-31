@@ -10,7 +10,7 @@ library(tigris)
 tract_tigris_2000 <-
   tracts(state = "39", county = "061", year = 2000) |>
   st_transform(5072) |>
-  transmute(tract_fips = CTIDFP00)
+  transmute(census_tract_id = CTIDFP00)
 
 county_tigris_2000 <- st_union(tract_tigris_2000)
 
@@ -30,7 +30,7 @@ usethis::use_data(tract_tigris_2000, zcta_tigris_2000, overwrite = TRUE)
 tract_tigris_2010 <-
   tracts(state = "39", county = "061", year = 2010) |>
   st_transform(5072) |>
-  transmute(tract_fips = GEOID10)
+  transmute(census_tract_id = GEOID10)
 
 county_tigris_2010 <- st_union(tract_tigris_2010)
 
@@ -50,7 +50,7 @@ usethis::use_data(tract_tigris_2010, zcta_tigris_2010, overwrite = TRUE)
 tract_tigris_2020 <-
   tracts(state = "39", county = "061", year = 2020) |>
   st_transform(5072) |>
-  transmute(tract_fips = GEOID)
+  transmute(census_tract_id = GEOID)
 
 county_tigris_2020 <- st_union(tract_tigris_2020)
 
