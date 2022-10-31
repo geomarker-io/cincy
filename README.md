@@ -6,6 +6,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/geomarker-io/cincy/workflows/R-CMD-check/badge.svg)](https://github.com/geomarker-io/cincy/actions)
+[![R-CMD-check](https://github.com/geomarker-io/cincy/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/geomarker-io/cincy/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The `cincy` package contains simple feature geographic polygon files
@@ -37,6 +38,7 @@ source, and optionally vintage:
 | `neigh_ccc`           |   neigh   |   ccc   |         |
 | `county_swoh_2010`    |  county   |  swoh   |  2010   |
 | `county_hlthvts_2010` |  county   | hlthvts |  2010   |
+| `county_hlthvoh_2010` |  county   | hlthvoh |  2010   |
 | `county_hlthv_2010`   |  county   |  hlthv  |  2010   |
 | `county_8cc_2010`     |  county   |   8cc   |  2010   |
 | `county_7cc_2010`     |  county   |   7cc   |  2010   |
@@ -126,21 +128,21 @@ cincy::county_7cc_2010
     ## Simple feature collection with 7 features and 5 fields
     ## Geometry type: MULTIPOLYGON
     ## Dimension:     XY
-    ## Bounding box:  xmin: 820828.6 ymin: 1568467 xmax: 1079275 ymax: 1903358
+    ## Bounding box:  xmin: 949713.7 ymin: 1808108 xmax: 1025618 ymax: 1903358
     ## Projected CRS: NAD83(NSRS2007) / Conus Albers
     ##   county_name county_id state_name state_id geoid
-    ## 1    Highland       071         OH       39 39071
+    ## 1      Butler       017         OH       39 39017
     ## 2    Hamilton       061         OH       39 39061
     ## 3    Clermont       025         OH       39 39025
     ## 4      Warren       165         OH       39 39165
-    ## 5       Boone       015         KY       21 21015
-    ## 6      Warren       227         KY       21 21227
+    ## 5      Kenton       117         KY       21 21117
+    ## 6       Boone       015         KY       21 21015
     ## 7    Campbell       037         KY       21 21037
     ##                         geometry
-    ## 1 MULTIPOLYGON (((1049993 188...
+    ## 1 MULTIPOLYGON (((968901.4 18...
     ## 2 MULTIPOLYGON (((954168.6 18...
     ## 3 MULTIPOLYGON (((1002941 186...
     ## 4 MULTIPOLYGON (((991479.4 18...
-    ## 5 MULTIPOLYGON (((953225.9 18...
-    ## 6 MULTIPOLYGON (((827128.2 15...
+    ## 5 MULTIPOLYGON (((974627.4 18...
+    ## 6 MULTIPOLYGON (((953225.9 18...
     ## 7 MULTIPOLYGON (((990745 1832...
