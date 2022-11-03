@@ -5,6 +5,6 @@ dep_index <-
   readRDS() |>
   tibble::as_tibble()
 
-dep_index <- dplyr::left_join(cincy::tract_tigris_2010, dep_index, by = c("tract_fips" = "census_tract_fips"))
+dep_index <- dplyr::left_join(cincy::tract_tigris_2010, dep_index, by = c("census_tract_id" = "census_tract_fips"))
 
 usethis::use_data(dep_index, overwrite = TRUE)
