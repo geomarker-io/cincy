@@ -1,4 +1,27 @@
 url: https://geomarker.io/cincy/
 template:
   bootstrap: 5
+reference:
+- title: Counties
+  contents:
+  - county_swoh_2010
+  - county_hlthv_2010
+  - county_hlthvoh_2010
+  - county_7cc_2010
+  - county_8cc_2010
+- title: ZCTA
+  contents:
+  - zcta_tigris_2000
+- title: Census Tract
+  contents:
+  - tract_tigris_2000
+- title: Neighborhood
+  contents:
+  - neigh_ccc
+  - neigh_sna
+  - neigh_cchmc_2010
+- title: Interpolate
+  contents:
+  - interpolate
+  - dep_index
 
