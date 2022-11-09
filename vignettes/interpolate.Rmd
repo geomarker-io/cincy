@@ -60,7 +60,7 @@ The `cincy::interpolate` function allows the user to choose from three sets of w
 ```{r}
 d_neigh_pop <- 
   d_tract |>
-  cincy::interpolate(to = cincy::neigh_cchmc, weights = "pop") |>
+  cincy::interpolate(to = cincy::neigh_cchmc_2010, weights = "pop") |>
   st_transform(3735)
 ```
 
@@ -99,12 +99,12 @@ d_zcta_area <-
 
 d_neigh_homes <- 
   d_tract |>
-  cincy::interpolate(to = cincy::neigh_cchmc, weights = "homes") |>
+  cincy::interpolate(to = cincy::neigh_cchmc_2010, weights = "homes") |>
   st_transform(3735)
 
 d_neigh_area <- 
   d_tract |>
-  cincy::interpolate(to = cincy::neigh_cchmc, weights = "area") |>
+  cincy::interpolate(to = cincy::neigh_cchmc_2010, weights = "area") |>
   st_transform(3735)
 ```
 
@@ -135,7 +135,7 @@ d_zcta <-
 d_neigh_long <- d_neigh |>
   pivot_longer(cols = !neighborhood, names_to = "weights", values_to = "fraction_poverty")
 
-d_neigh_long <- left_join(cincy::neigh_cchmc, d_neigh_long, by = "neighborhood") |>
+d_neigh_long <- left_join(cincy::neigh_cchmc_2010, d_neigh_long, by = "neighborhood") |>
   st_transform(3735) |>
   mutate(geography = "neighborhood") |>
   rename(id = neighborhood)
