@@ -31,6 +31,13 @@ extensively."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/lib
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/geographies.html">{cincy} Geographies</a>
+    <a class="dropdown-item" href="../articles/interpolate.html">Spatial Interpolation</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -128,39 +135,39 @@ numeric values to be interpolated into target geographies</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 953086.2 ymin: 1838813 xmax: 1001262 ymax: 1869113</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: NAD83(NSRS2007) / Conus Albers</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> First 10 features:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     tract_fips fraction_assisted_income fraction_high_school_edu median_income</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  39061005200               0.04912664                0.9321523         74211</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  39061026200               0.37333333                0.6149897         30455</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  39061023901               0.05110274                0.9758308         74275</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  39061023701               0.07624633                0.8954626         47708</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  39061010500               0.21568627                0.8148148         34083</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  39061020501               0.05056760                0.9414548         71385</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  39061021900               0.39603960                0.8285410         27670</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  39061021102               0.04065400                0.9768626         76875</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  39061003700               0.54056518                0.7370618          9669</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 39061003800               0.42660550                0.7673716         15745</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    fraction_no_health_ins fraction_poverty fraction_vacant_housing dep_index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              0.09966121       0.09974641             0.107212476 0.2880370</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2              0.16952381       0.31809524             0.075500770 0.5866909</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3              0.04193055       0.05503385             0.066298343 0.2394916</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4              0.06701031       0.08610495             0.053435115 0.3126355</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5              0.09356725       0.32309942             0.201991465 0.4767674</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6              0.11451342       0.07046980             0.050930460 0.2791648</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7              0.13457077       0.37014471             0.146959459 0.5463900</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8              0.02159624       0.03051643             0.005711775 0.2126445</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9              0.13093196       0.68610635             0.191002950 0.7171905</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10             0.11066844       0.45406125             0.307936508 0.6186006</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                          geometry</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  MULTIPOLYGON (((987213.8 18...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  MULTIPOLYGON (((955432.3 18...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  MULTIPOLYGON (((992289 1863...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  MULTIPOLYGON (((989296 1858...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  MULTIPOLYGON (((966163.9 18...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  MULTIPOLYGON (((962566 1859...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  MULTIPOLYGON (((975331.5 18...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  MULTIPOLYGON (((966459.9 18...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  MULTIPOLYGON (((983455.8 18...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 MULTIPOLYGON (((983764.5 18...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    census_tract_id fraction_assisted_income fraction_high_school_edu</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      39061005200               0.04912664                0.9321523</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      39061026200               0.37333333                0.6149897</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      39061023901               0.05110274                0.9758308</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      39061023701               0.07624633                0.8954626</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      39061010500               0.21568627                0.8148148</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      39061020501               0.05056760                0.9414548</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7      39061021900               0.39603960                0.8285410</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8      39061021102               0.04065400                0.9768626</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9      39061003700               0.54056518                0.7370618</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10     39061003800               0.42660550                0.7673716</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    median_income fraction_no_health_ins fraction_poverty</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          74211             0.09966121       0.09974641</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2          30455             0.16952381       0.31809524</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3          74275             0.04193055       0.05503385</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4          47708             0.06701031       0.08610495</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5          34083             0.09356725       0.32309942</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6          71385             0.11451342       0.07046980</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7          27670             0.13457077       0.37014471</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8          76875             0.02159624       0.03051643</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9           9669             0.13093196       0.68610635</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10         15745             0.11066844       0.45406125</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    fraction_vacant_housing dep_index                       geometry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1              0.107212476 0.2880370 MULTIPOLYGON (((987213.8 18...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2              0.075500770 0.5866909 MULTIPOLYGON (((955432.3 18...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3              0.066298343 0.2394916 MULTIPOLYGON (((992289 1863...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4              0.053435115 0.3126355 MULTIPOLYGON (((989296 1858...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5              0.201991465 0.4767674 MULTIPOLYGON (((966163.9 18...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6              0.050930460 0.2791648 MULTIPOLYGON (((962566 1859...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7              0.146959459 0.5463900 MULTIPOLYGON (((975331.5 18...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8              0.005711775 0.2126445 MULTIPOLYGON (((966459.9 18...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9              0.191002950 0.7171905 MULTIPOLYGON (((983455.8 18...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10             0.307936508 0.6186006 MULTIPOLYGON (((983764.5 18...</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
