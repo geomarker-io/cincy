@@ -10,7 +10,10 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>", 
+  echo = FALSE, 
+  message = FALSE, 
+  warning = FALSE
 )
 ```
 
@@ -53,7 +56,7 @@ d_tract |>
 ```{r}
 #| fig-align: center
 d_tract |>
-  cincy::interpolate(to = cincy::neigh_cchmc_2010, weights = "area") |>
+  cincy::interpolate(to = cincy::neigh_cchmc, weights = "area") |>
   st_transform(3735) |>
   tm_shape() +
   tm_polygons("fraction_poverty", 

@@ -1,0 +1,144 @@
+---
+title: "Avondale: A Local Geography Case Study"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Avondale}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>", 
+  echo = FALSE, 
+  message = FALSE, 
+  warning = FALSE
+)
+```
+
+```{r setup}
+library(cincy)
+library(dplyr)
+library(tmap)
+library(ggplot2)
+tmap_mode("view")
+```
+
+## Neighborhoods
+
+Typically when trying to describe local place-based characteristics, the geographic unit of interest is neighborhood. Neighborhoods are where people live and interact and tend to have their own identities. However, neighborhoods are not always well-defined and few data products are available directly at the neighborhood level. 
+
+Here we will use the Avondale neighborhood in Cincinnati, Ohio to examine potential issues when working with local geographies. In Cincinnati, neighborhoods are defined by neighborhood community councils. However, other definitions (such as Statistical Neighborhood Approximations) have modified neighborhood boundaries to align with Census tract boundaries and are therefore more commonly used in research. 
+
+```{r}
+avondale_tract_aligned <- cincy::neigh_cchmc |>
+  filter(neighborhood == "Avondale") |>
+  mutate(neighborhood = "Avondale - Tract Aligned")
+
+avondale_community_council <- cincy::neigh_ccc |>
+  filter(neighborhood == "Avondale") |>
+  mutate(neighborhood = "Avondale - Community Council")
+
+avondale_tracts_2010 <- cincy::tract_tigris_2010 |>
+    filter(census_tract_id %in% c("39061006900", 
+                                "39061006800", 
+                                "39061006600", 
+                                "39061027000"))
+
+tmap_mode("view")
+
+tm_basemap(leaflet::providers$CartoDB.Positron) +
+  tm_shape(avondale_community_council) +
+  tm_polygons(alpha = 0.5,
+              col = "red", 
+              border.col = "gray") +
+  tm_shape(avondale_tract_aligned) +
+  tm_polygons(alpha = 0.3, 
+              col = "blue") +
+  tm_shape(avondale_tracts_2010) +
+  tm_borders(col = "black") +
+  tm_text("census_tract_id", 
+          col = "black")
+```
+
+## Approximating neighborhood using tracts
+
+Census tracts are often used to approximate neighborhoods. As a common unit of area defined by the U.S. Census Bureau, tracts are relatively stable over time and have an average population of 4,000 residents. Although not based on governmental neighborhood boundaries, tracts are meant to describe contextually similar areas. 
+
+However, tract definitions are subject to change decennially. For example, Avondale is comprised of 5 2000-vintage tracts, but only 4 2010-vintage tracts. The maps below show that two 2000 tracts merge to one 2010 tract. 
+
+```{r}
+avondale_tracts_2000 <- cincy::tract_tigris_2000 |>
+  filter(census_tract_id %in% c("39061006900", 
+                                "39061006800", 
+                                "39061006600", 
+                                "39061006700", 
+                                "39061003400"))
+
+p1 <- ggplot() +
+  geom_sf(data = avondale_tracts_2000, aes(fill = census_tract_id)) +
+  ggsflabel::geom_sf_label(data = avondale_tracts_2000, 
+                           aes(label = census_tract_id)) +
+  ggthemes::theme_map() +
+  theme(legend.position = "none")
+
+p2 <- ggplot() +
+  geom_sf(data = avondale_tracts_2010, aes(fill = census_tract_id)) +
+  ggsflabel::geom_sf_label(data = avondale_tracts_2010, 
+                           aes(label = census_tract_id)) +
+  ggthemes::theme_map() +
+  theme(legend.position = "none")
+
+cowplot::plot_grid(p1, p2, nrow = 1, labels = c("2000", "2010"))
+```
+
+The tracts that make up Avondale do not change from 2010 to 2020. 
+
+In Hamilton County, there are 230 tracts in 2000, 222 in 2010, and 226 in 2020. There are tracts merging and separating every 10 years.
+
+## Approximating neighborhood using ZCTA
+
+Zip Code Tabulation Areas (ZCTAs) are also used to approximate neighborhood due to their accessibility. ZIP code is a component of postal addresses and is therefore available when neighborhood and/or tract may not be. ZIP codes can also sometimes be shared with full addresses cannot. 
+
+However, ZCTA boundaries are based on postal routes rather than contextual neighborhood characteristics, and therefore are not always good neighborhood approximations. Here we show how Avondale aligns with the surrounding ZCTAs.
+
+```{r}
+z <- cincy::zcta_tigris_2010 |>
+  filter(zcta %in% c("45229", 
+                     "45217", 
+                     "45220", 
+                     "45219", 
+                     "45206", 
+                     "45207")) |>
+  mutate(main = ifelse(zcta == "45229", TRUE, FALSE))
+
+tm_basemap(leaflet::providers$CartoDB.Positron) +
+  tm_shape(z) +
+  tm_polygons(alpha = 0.5, 
+              col = "main", 
+              palette = c("gray90", "gray50"), 
+              legend.show = FALSE) +
+  tm_text("zcta") +
+  tm_shape(avondale_tract_aligned) +
+  tm_polygons(alpha = 0.3, 
+              col = "blue")
+```
+
+The 45229 ZCTA is most commonly used to represent Avondale, but includes North Avondale and excludes the most Western, Eastern, and Southern parts of the neighborhood. 
+
+```{r}
+neigh_int <- cincy::interpolate(dep_index, to = cincy::neigh_cchmc, "pop") |>
+  sf::st_drop_geometry() |>
+  filter(neighborhood == "Avondale") |>
+  select(geography = neighborhood, fraction_poverty)
+
+zcta_int <- cincy::interpolate(dep_index, to = cincy::zcta_tigris_2010, "pop") |>
+  sf::st_drop_geometry() |>
+  filter(zcta == "45229") |>
+  select(geography = zcta, fraction_poverty)
+
+knitr::kable(bind_rows(neigh_int, zcta_int))
+```
+In this case, using ZCTA to approximate neighborhood would result in underestimating the fraction of the population living in poverty by about 0.07. 
+
