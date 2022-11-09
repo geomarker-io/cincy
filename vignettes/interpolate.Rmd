@@ -31,7 +31,7 @@ library(sf)
 library(tmap)
 
 d_tract <- st_transform(cincy::dep_index, 3735) |>
-  select(census_tract_id = tract_fips, fraction_poverty)
+  select(census_tract_id, fraction_poverty)
 
 d_tract
 ```

@@ -53,7 +53,7 @@ d_tract |>
 ```{r}
 #| fig-align: center
 d_tract |>
-  cincy::interpolate(to = cincy::neigh_cchmc, weights = "area") |>
+  cincy::interpolate(to = cincy::neigh_cchmc_2010, weights = "area") |>
   st_transform(3735) |>
   tm_shape() +
   tm_polygons("fraction_poverty", 
