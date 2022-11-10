@@ -32,7 +32,7 @@ Typically when trying to describe local place-based characteristics, the geograp
 Here we will use the Avondale neighborhood in Cincinnati, Ohio to examine potential issues when working with local geographies. In Cincinnati, neighborhoods are defined by neighborhood community councils. However, other definitions (such as Statistical Neighborhood Approximations) have modified neighborhood boundaries to align with Census tract boundaries and are therefore more commonly used in research. 
 
 ```{r}
-avondale_tract_aligned <- cincy::neigh_cchmc |>
+avondale_tract_aligned <- cincy::neigh_cchmc_2010 |>
   filter(neighborhood == "Avondale") |>
   mutate(neighborhood = "Avondale - Tract Aligned")
 
@@ -128,7 +128,7 @@ tm_basemap(leaflet::providers$CartoDB.Positron) +
 The 45229 ZCTA is most commonly used to represent Avondale, but includes North Avondale and excludes the most Western, Eastern, and Southern parts of the neighborhood. 
 
 ```{r}
-neigh_int <- cincy::interpolate(dep_index, to = cincy::neigh_cchmc, "pop") |>
+neigh_int <- cincy::interpolate(dep_index, to = cincy::neigh_cchmc_2010, "pop") |>
   sf::st_drop_geometry() |>
   filter(neighborhood == "Avondale") |>
   select(geography = neighborhood, fraction_poverty)
