@@ -146,5 +146,5 @@ hc_pov <- tibble::tibble(geography = "Hamilton County",
 
 knitr::kable(bind_rows(neigh_int, zcta_int, hc_pov))
 ```
-In this case, using ZCTA to approximate neighborhood would result in underestimating the fraction of the population living in poverty by about 0.07. 
+In this case, using ZCTA to approximate neighborhood would result in underestimating the percent of the population living in poverty by about 7%. 
 
