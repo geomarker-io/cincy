@@ -1,0 +1,62 @@
+---
+title: "County Definitions"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{County Definitions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  echo = FALSE
+)
+```
+
+```{r setup}
+library(cincy)
+library(ggplot2)
+```
+
+```{r}
+make_county_map <- function(county_def) {
+  ggplot(county_def) +
+  geom_sf(aes(fill = county_name)) +
+  ggsflabel::geom_sf_label(aes(label = county_name)) +
+  ggthemes::theme_map() +
+  theme(legend.position = "none")
+}
+```
+
+## CCHMC 7-County Catchment Area
+
+```{r}
+make_county_map(cincy::county_7cc_2010)
+```
+
+## CCHMC 8-County Catchment Area
+
+```{r}
+make_county_map(cincy::county_8cc_2010)
+```
+
+## Health Vine Counties
+
+```{r}
+make_county_map(cincy::county_hlthv_2010)
+```
+
+## Health Vine Counties - Ohio Only
+
+```{r}
+make_county_map(cincy::county_hlthvoh_2010)
+```
+
+## Southwest Ohio Counties
+
+```{r}
+make_county_map(cincy::county_swoh_2010)
+```
+
