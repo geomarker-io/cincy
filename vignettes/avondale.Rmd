@@ -95,7 +95,7 @@ cowplot::plot_grid(p1, p2, nrow = 1, labels = c("2000", "2010"))
 
 The tracts that make up Avondale do not change from 2010 to 2020. 
 
-In Hamilton County, there are 230 tracts in 2000, 222 in 2010, and 226 in 2020. There are tracts merging and separating every 10 years.
+In Hamilton County, there are 230 tracts in 2000, 222 in 2010, and 226 in 2020. Tracts can be merged or split every 10 years, but tract identifiers are always unique. For example, the 2000 tracts `39061006700` and `39061003400` are merged in 2010, and the new tract is given an identifier (`39061027000`) that is different from either of the previous identifiers.
 
 ## Approximating neighborhood using ZCTA
 
@@ -104,7 +104,7 @@ Zip Code Tabulation Areas (ZCTAs) are also used to approximate neighborhood due 
 However, ZCTA boundaries are based on postal routes rather than contextual neighborhood characteristics, and therefore are not always good neighborhood approximations. Here we show how Avondale aligns with the surrounding ZCTAs.
 
 ```{r}
-z <- cincy::zcta_tigris_2010 |>
+zcta <- cincy::zcta_tigris_2010 |>
   filter(zcta %in% c("45229", 
                      "45217", 
                      "45220", 
@@ -114,7 +114,7 @@ z <- cincy::zcta_tigris_2010 |>
   mutate(main = ifelse(zcta == "45229", TRUE, FALSE))
 
 tm_basemap(leaflet::providers$CartoDB.Positron) +
-  tm_shape(z) +
+  tm_shape(zcta) +
   tm_polygons(alpha = 0.5, 
               col = "main", 
               palette = c("gray90", "gray50"), 
@@ -131,14 +131,20 @@ The 45229 ZCTA is most commonly used to represent Avondale, but includes North A
 neigh_int <- cincy::interpolate(dep_index, to = cincy::neigh_cchmc_2010, "pop") |>
   sf::st_drop_geometry() |>
   filter(neighborhood == "Avondale") |>
-  select(geography = neighborhood, fraction_poverty)
+  mutate(`Percent Poverty` = glue::glue("{round(fraction_poverty * 100)}%")) |>
+  select(geography = neighborhood, `Percent Poverty`)
 
 zcta_int <- cincy::interpolate(dep_index, to = cincy::zcta_tigris_2010, "pop") |>
   sf::st_drop_geometry() |>
   filter(zcta == "45229") |>
-  select(geography = zcta, fraction_poverty)
+  mutate(`Percent Poverty` = glue::glue("{round(fraction_poverty * 100)}%")) |>
+  select(geography = zcta, 
+        `Percent Poverty`)
 
-knitr::kable(bind_rows(neigh_int, zcta_int))
+hc_pov <- tibble::tibble(geography = "Hamilton County", 
+                         `Percent Poverty` = "16%")
+
+knitr::kable(bind_rows(neigh_int, zcta_int, hc_pov))
 ```
 In this case, using ZCTA to approximate neighborhood would result in underestimating the fraction of the population living in poverty by about 0.07. 
 
