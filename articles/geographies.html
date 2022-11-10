@@ -41,6 +41,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/avondale.html">Avondale: A Local Geography Case Study</a>
     <a class="dropdown-item" href="../articles/geographies.html">{cincy} Geographies</a>
     <a class="dropdown-item" href="../articles/interpolate.html">Spatial Interpolation</a>
   </div>
@@ -71,29 +72,12 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://geomarker.io/cincy/">cincy</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-tmap/tmap" class="external-link">tmap</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1; sf_use_s2() is TRUE</span></span>
-<span></span>
-<span><span class="va">d_tract</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="../reference/dep_index.html">dep_index</a></span>, <span class="fl">3735</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>cincy</code> package provides commonly used Cincinnati
 geographies, including census tracts, neighborhoods, and ZIP Code
 Tabulation Areas, as <code>sf</code> objects.</p>
 <div class="section level2">
 <h2 id="census-tracts">Census Tracts<a class="anchor" aria-label="anchor" href="#census-tracts"></a>
 </h2>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">d_tract</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html" class="external-link">tm_polygons</a></span><span class="op">(</span><span class="st">"fraction_poverty"</span>, </span>
-<span>              pal <span class="op">=</span> <span class="st">"viridis"</span>, </span>
-<span>              style <span class="op">=</span> <span class="st">"cont"</span>, </span>
-<span>              title <span class="op">=</span> <span class="st">"Fraction Poverty"</span>, </span>
-<span>              breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html" class="external-link">tm_layout</a></span><span class="op">(</span>frame <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>            legend.outside <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="geographies_files/figure-html/unnamed-chunk-2-1.png" width="700" style="display: block; margin: auto;"></p>
 <ul>
 <li><p>Census tracts are small statistical subdivisions of a county that
@@ -111,18 +95,6 @@ census.</p></li>
 <div class="section level2">
 <h2 id="neighborhoods">Neighborhoods<a class="anchor" aria-label="anchor" href="#neighborhoods"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">d_tract</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">cincy</span><span class="fu">::</span><span class="fu"><a href="../reference/interpolate.html">interpolate</a></span><span class="op">(</span>to <span class="op">=</span> <span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="../reference/neigh_cchmc_2010.html">neigh_cchmc_2010</a></span>, weights <span class="op">=</span> <span class="st">"area"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3735</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html" class="external-link">tm_polygons</a></span><span class="op">(</span><span class="st">"fraction_poverty"</span>, </span>
-<span>              pal <span class="op">=</span> <span class="st">"viridis"</span>, </span>
-<span>              style <span class="op">=</span> <span class="st">"cont"</span>, </span>
-<span>              title <span class="op">=</span> <span class="st">"Fraction Poverty"</span>, </span>
-<span>              breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html" class="external-link">tm_layout</a></span><span class="op">(</span>frame <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>            legend.outside <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="geographies_files/figure-html/unnamed-chunk-3-1.png" width="700" style="display: block; margin: auto;"></p>
 <ul>
 <li>
@@ -148,18 +120,6 @@ county</p></li>
 <div class="section level2">
 <h2 id="zip-codes">ZIP Codes<a class="anchor" aria-label="anchor" href="#zip-codes"></a>
 </h2>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">d_tract</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">cincy</span><span class="fu">::</span><span class="fu"><a href="../reference/interpolate.html">interpolate</a></span><span class="op">(</span>to <span class="op">=</span> <span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="../reference/ZCTAs.html">zcta_tigris_2010</a></span>, weights <span class="op">=</span> <span class="st">"area"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3735</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html" class="external-link">tm_shape</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html" class="external-link">tm_polygons</a></span><span class="op">(</span><span class="st">"fraction_poverty"</span>, </span>
-<span>              pal <span class="op">=</span> <span class="st">"viridis"</span>, </span>
-<span>              style <span class="op">=</span> <span class="st">"cont"</span>, </span>
-<span>              title <span class="op">=</span> <span class="st">"Fraction Poverty"</span>, </span>
-<span>              breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html" class="external-link">tm_layout</a></span><span class="op">(</span>frame <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>            legend.outside <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="geographies_files/figure-html/unnamed-chunk-4-1.png" width="700" style="display: block; margin: auto;"></p>
 <ul>
 <li><p>ZIP Codes are not areal features, but rather identify the post

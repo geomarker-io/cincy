@@ -41,6 +41,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/avondale.html">Avondale: A Local Geography Case Study</a>
     <a class="dropdown-item" href="../articles/geographies.html">{cincy} Geographies</a>
     <a class="dropdown-item" href="../articles/interpolate.html">Spatial Interpolation</a>
   </div>
@@ -71,8 +72,6 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://geomarker.io/cincy/">cincy</a></span><span class="op">)</span></span></code></pre></div>
 <p>Spatial interpolation is the process of transforming data from one
 spatial resolution to another. The <code><a href="../reference/interpolate.html">cincy::interpolate</a></code>
 function uses census block group level weights to interpolate data from
@@ -81,110 +80,61 @@ geography. Variables prefixed with <code>n_</code> will be interpolated
 extensively (weighted sum), and all other numeric variables will be
 interpolated intensively (weighted mean).</p>
 <p>Here, we interpolate <code>fraction_poverty</code> from the 2018
-American Community Survey from 2010 census tracts to 2010 ZCTAs.</p>
-<p><strong>Census Tract Fraction Poverty</strong></p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+American Community Survey from 2010 census tracts to 2010 Neighborhoods
+and 2010 ZCTAs.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://geomarker.io/cincy/">cincy</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1; sf_use_s2() is TRUE</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-tmap/tmap" class="external-link">tmap</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">d_tract</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="../reference/dep_index.html">dep_index</a></span>, <span class="fl">3735</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">census_tract_id</span>, <span class="va">fraction_poverty</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">d_tract</span></span>
-<span><span class="co">#&gt; Simple feature collection with 222 features and 2 fields</span></span>
-<span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
-<span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: 1310183 ymin: 377269.9 xmax: 1471300 ymax: 484981</span></span>
-<span><span class="co">#&gt; Projected CRS: NAD83 / Ohio South (ftUS)</span></span>
-<span><span class="co">#&gt; First 10 features:</span></span>
-<span><span class="co">#&gt;    census_tract_id fraction_poverty                       geometry</span></span>
-<span><span class="co">#&gt; 1      39061024800       0.02395559 MULTIPOLYGON (((1432698 419...</span></span>
-<span><span class="co">#&gt; 2      39061024901       0.23465704 MULTIPOLYGON (((1443219 419...</span></span>
-<span><span class="co">#&gt; 3      39061025002       0.07681839 MULTIPOLYGON (((1430888 397...</span></span>
-<span><span class="co">#&gt; 4      39061025104       0.03482587 MULTIPOLYGON (((1437087 385...</span></span>
-<span><span class="co">#&gt; 5      39061025102       0.08560972 MULTIPOLYGON (((1453739 401...</span></span>
-<span><span class="co">#&gt; 6      39061024902       0.01532070 MULTIPOLYGON (((1451413 408...</span></span>
-<span><span class="co">#&gt; 7      39061025101       0.01003280 MULTIPOLYGON (((1454246 400...</span></span>
-<span><span class="co">#&gt; 8      39061025001       0.14513478 MULTIPOLYGON (((1442738 396...</span></span>
-<span><span class="co">#&gt; 9      39061008601       0.47115789 MULTIPOLYGON (((1382186 422...</span></span>
-<span><span class="co">#&gt; 10     39061008800       0.57786282 MULTIPOLYGON (((1382492 422...</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">census_tract_id</span>, <span class="va">fraction_poverty</span><span class="op">)</span></span></code></pre></div>
 <p><img src="interpolate_files/figure-html/unnamed-chunk-3-1.png" width="700" style="display: block; margin: auto;"></p>
 <div class="section level2">
-<h2 id="interpolating-to-zcta">Interpolating to ZCTA<a class="anchor" aria-label="anchor" href="#interpolating-to-zcta"></a>
+<h2 id="interpolating-to-neighborhood-and-zcta">Interpolating to Neighborhood and ZCTA<a class="anchor" aria-label="anchor" href="#interpolating-to-neighborhood-and-zcta"></a>
 </h2>
 <p>The <code><a href="../reference/interpolate.html">cincy::interpolate</a></code> function allows the user to
 choose from three sets of weights to be used for the weighted sums
-and/or averages: block group population, block group number of homes,
-and block group area.</p>
-<p><strong>Population Weights</strong></p>
+and/or averages: block group <strong>population</strong>, block group
+<strong>number of homes</strong>, and block group
+<strong>area</strong>.</p>
+<p><strong>Neighborhood</strong></p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">d_neigh_pop</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">d_tract</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">cincy</span><span class="fu">::</span><span class="fu"><a href="../reference/interpolate.html">interpolate</a></span><span class="op">(</span>to <span class="op">=</span> <span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="../reference/neigh_cchmc_2010.html">neigh_cchmc_2010</a></span>, weights <span class="op">=</span> <span class="st">"pop"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3735</span><span class="op">)</span></span></code></pre></div>
+<p><img src="interpolate_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
+<p><strong>ZCTA</strong></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">d_zcta_pop</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">d_tract</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">cincy</span><span class="fu">::</span><span class="fu"><a href="../reference/interpolate.html">interpolate</a></span><span class="op">(</span>to <span class="op">=</span> <span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="../reference/ZCTAs.html">zcta_tigris_2010</a></span>, weights <span class="op">=</span> <span class="st">"pop"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3735</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">d_zcta_pop</span></span>
-<span><span class="co">#&gt; Simple feature collection with 57 features and 2 fields</span></span>
-<span><span class="co">#&gt; Geometry type: MULTIPOLYGON</span></span>
-<span><span class="co">#&gt; Dimension:     XY</span></span>
-<span><span class="co">#&gt; Bounding box:  xmin: 1310183 ymin: 377269.9 xmax: 1499039 ymax: 570030.7</span></span>
-<span><span class="co">#&gt; Projected CRS: NAD83 / Ohio South (ftUS)</span></span>
-<span><span class="co">#&gt; First 10 features:</span></span>
-<span><span class="co">#&gt;     zcta fraction_poverty                       geometry</span></span>
-<span><span class="co">#&gt; 1  45212       0.21703724 MULTIPOLYGON (((1412333 423...</span></span>
-<span><span class="co">#&gt; 2  45204       0.42233918 MULTIPOLYGON (((1383284 412...</span></span>
-<span><span class="co">#&gt; 3  45233       0.07854548 MULTIPOLYGON (((1341573 418...</span></span>
-<span><span class="co">#&gt; 4  45216       0.24193363 MULTIPOLYGON (((1408543 449...</span></span>
-<span><span class="co">#&gt; 5  45232       0.58286395 MULTIPOLYGON (((1396026 434...</span></span>
-<span><span class="co">#&gt; 6  45251       0.11984921 MULTIPOLYGON (((1366032 456...</span></span>
-<span><span class="co">#&gt; 7  45248       0.07368119 MULTIPOLYGON (((1365090 427...</span></span>
-<span><span class="co">#&gt; 8  45215       0.15255358 MULTIPOLYGON (((1409372 449...</span></span>
-<span><span class="co">#&gt; 9  45237       0.22753371 MULTIPOLYGON (((1409601 432...</span></span>
-<span><span class="co">#&gt; 10 45240       0.15150728 MULTIPOLYGON (((1388464 467...</span></span></code></pre></div>
-<p><img src="interpolate_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<p><strong>Number of Homes Weights</strong></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">d_zcta_homes</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="va">d_tract</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">cincy</span><span class="fu">::</span><span class="fu"><a href="../reference/interpolate.html">interpolate</a></span><span class="op">(</span>to <span class="op">=</span> <span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="../reference/ZCTAs.html">zcta_tigris_2010</a></span>, weights <span class="op">=</span> <span class="st">"homes"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3735</span><span class="op">)</span></span></code></pre></div>
-<p><strong>Area Weights</strong></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">d_zcta_area</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="va">d_tract</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">cincy</span><span class="fu">::</span><span class="fu"><a href="../reference/interpolate.html">interpolate</a></span><span class="op">(</span>to <span class="op">=</span> <span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="../reference/ZCTAs.html">zcta_tigris_2010</a></span>, weights <span class="op">=</span> <span class="st">"area"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3735</span><span class="op">)</span></span></code></pre></div>
-<p><strong>Comparing Interpolated Fraction Poverty Using Different
-Weights</strong></p>
-<pre><code><span><span class="co">#&gt; Loading required package: ggplot2</span></span>
-<span><span class="co">#&gt; Registered S3 method overwritten by 'GGally':</span></span>
-<span><span class="co">#&gt;   method from   </span></span>
-<span><span class="co">#&gt;   +.gg   ggplot2</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing non-finite values (`stat_density()`).</span></span>
-<span><span class="co">#&gt; Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :</span></span>
-<span><span class="co">#&gt; Removed 2 rows containing missing values</span></span>
-<span></span>
-<span><span class="co">#&gt; Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :</span></span>
-<span><span class="co">#&gt; Removed 2 rows containing missing values</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_point()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing non-finite values (`stat_density()`).</span></span>
-<span><span class="co">#&gt; Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :</span></span>
-<span><span class="co">#&gt; Removed 2 rows containing missing values</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_point()`).</span></span>
-<span><span class="co">#&gt; Removed 2 rows containing missing values (`geom_point()`).</span></span>
-<span><span class="co">#&gt; Warning: Removed 1 rows containing non-finite values (`stat_density()`).</span></span></code></pre>
-<p><img src="interpolate_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="interpolate_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p>The above examples use population (<code>pop</code>) weights, but
+<code>homes</code> or <code>area</code> weights can be used by changing
+the <code>weights</code> argument.</p>
+<p><img src="interpolate_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
+<p>Note that we lose variability when interpolating from a smaller
+geography to a larger geography. This is especially noticeable when
+interpolating from tract to ZCTA.</p>
+<p>Also note that all three weights yield similar results in this
+example. However, the result of using <code>area</code> weights varies
+slightly compared to <code>homes</code> and <code>population</code>.
+This conclusion is further supported by the correlation between
+interpolated <code>fraction_poverty</code> values using the three sets
+of weights.</p>
+<p><strong>Neighborhood <code>fraction_poverty</code> interpolated from
+tract using <code>population</code>, <code>homes</code>, and
+<code>area</code> weights</strong></p>
+<p><img src="interpolate_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
+<p><strong>ZCTA <code>fraction_poverty</code> interpolated from tract
+using <code>population</code>, <code>homes</code>, and <code>area</code>
+weights</strong></p>
+<p><img src="interpolate_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 </div>
   </main>
 </div>
