@@ -3,9 +3,10 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   avondale: avondale.html
+  counties: counties.html
   geographies: geographies.html
   interpolate: interpolate.html
-last_built: 2022-11-10T18:33Z
+last_built: 2022-11-10T18:55Z
 urls:
   reference: https://geomarker.io/cincy/reference
   article: https://geomarker.io/cincy/articles
