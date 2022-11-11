@@ -49,12 +49,22 @@ NULL
 #' [Open Data](http://cagis.org/Opendata/?) Community Council (CCC) Neighborhoods
 "neigh_sna"
 
-#' Neighborhood: CCHMC
-#' @source See `data-raw/hamilton_tract_to_cincy_neighborhood.csv` for tract to neighborhood lookup table
+#' Neighborhood: CCHMC 2010
+#' @source See `data-raw/hamilton_tract_to_cincy_neighborhood_2010.csv` for tract to neighborhood lookup table
 "neigh_cchmc_2010"
 
+#' Neighborhood: CCHMC 2020
+#' @source See `data-raw/make_tract_neigh_crosswalk_data.R` for tract to neighborhood lookup table
+"neigh_cchmc_2020"
+
+#' Tract to Neighborhood Lookup 2010
+"hamilton_tract_to_cincy_neighborhood_2010"
+
+#' Tract to Neighborhood Lookup 2020
+"hamilton_tract_to_cincy_neighborhood_2020"
+
 #' Deprivation Index
-#' 
+#'
 #' An example census tract-level dataset.  A simple features object of all census tracts in
 #' Hamilton County, OH with values for the 2018 deprivation index and its six components.
 #' @source The [2018 deprivation_index](https://geomarker.io/dep_index/2018_dep_index/). See `data-raw/make_dep_index_data.R`.
