@@ -58,13 +58,13 @@
          <chr>                  <GEOMETRY [m]>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
        1 Amberley    MULTIPOLYGON (((989336.8~  0.177    0.903  47361.  0.0882  0.171 
        2 Anderson T~ POLYGON ((994438.7 18406~  0.0726   0.957  87041.  0.0577  0.0752
-       3 Avondale    POLYGON ((982445.4 18486~  0.318    0.819  32319.  0.130   0.349 
+       3 Avondale    POLYGON ((982445.4 18486~  0.319    0.818  32285.  0.130   0.349 
        4 Blue Ash    POLYGON ((991931.8 18622~  0.0462   0.951  76956.  0.0562  0.0665
        5 Bond Hill   POLYGON ((984462.6 18535~  0.280    0.866  37928.  0.110   0.228 
        6 Camp Washi~ MULTIPOLYGON (((979160 1~  0.551    0.711  17038.  0.131   0.571 
        7 Carthage    MULTIPOLYGON (((982527.5~  0.274    0.763  33608.  0.165   0.242 
        8 Cheviot     POLYGON ((972072.9 18496~  0.227    0.862  37060.  0.129   0.260 
-       9 Clifton     POLYGON ((980429.9 18498~  0.114    0.928  32917.  0.0905  0.312 
+       9 Clifton     POLYGON ((980429.9 18498~  0.113    0.929  32955.  0.0903  0.312 
       10 Colerain T~ POLYGON ((972927.5 18556~  0.123    0.895  59730.  0.0978  0.117 
       # ... with 71 more rows, 3 more variables: fraction_vacant_housing <dbl>,
       #   dep_index <dbl>, n_things <dbl>, and abbreviated variable names
