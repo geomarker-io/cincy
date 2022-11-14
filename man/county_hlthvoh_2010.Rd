@@ -25,6 +25,9 @@ county_hlthvoh_2010
 County groupings are derived from CCHMC operational definitions
 }
 \examples{
-plot(county_hlthvoh_2010["county_name"], key.pos = 1)
+tm_shape(county_hlthvoh_2010) +
+tm_polygons(col = "county_name",
+           legend.show = FALSE) +
+  tm_text(text = "county_name")
 }
 \keyword{datasets}

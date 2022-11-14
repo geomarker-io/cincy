@@ -79,7 +79,10 @@ NULL
 #'   \item{geometry}{simple features geometry column}
 #' }
 #' @examples
-#' plot(county_swoh_2010["county_name"], key.pos = 1)
+#' tm_shape(county_swoh_2010) +
+#' tm_polygons(col = "county_name",
+#'            legend.show = FALSE) +
+#'   tm_text(text = "county_name")
 "county_swoh_2010"
 
 #' Counties: Healthvine
@@ -97,7 +100,10 @@ NULL
 #'   \item{geometry}{simple features geometry column}
 #' }
 #' @examples
-#' plot(county_hlthv_2010["county_name"], key.pos = 1)
+#' tm_shape(county_hlthv_2010) +
+#' tm_polygons(col = "county_name",
+#'            legend.show = FALSE) +
+#'   tm_text(text = "county_name")
 "county_hlthv_2010"
 
 #' Counties: Healthvine (in Ohio)
@@ -115,7 +121,10 @@ NULL
 #'   \item{geometry}{simple features geometry column}
 #' }
 #' @examples
-#' plot(county_hlthvoh_2010["county_name"], key.pos = 1)
+#' tm_shape(county_hlthvoh_2010) +
+#' tm_polygons(col = "county_name",
+#'            legend.show = FALSE) +
+#'   tm_text(text = "county_name")
 "county_hlthvoh_2010"
 
 #' Counties: 7 County Region
@@ -133,7 +142,10 @@ NULL
 #'   \item{geometry}{simple features geometry column}
 #' }
 #' @examples
-#' plot(county_7cc_2010["county_name"], key.pos = 1)
+#' tm_shape(county_7cc_2010) +
+#' tm_polygons(col = "county_name",
+#'            legend.show = FALSE) +
+#'   tm_text(text = "county_name")
 "county_7cc_2010"
 
 #' Counties: 8 County Region
@@ -151,5 +163,8 @@ NULL
 #'   \item{geometry}{simple features geometry column}
 #' }
 #' @examples
-#' plot(county_8cc_2010["county_name"], key.pos = 1)
+#' tm_shape(county_8cc_2010) +
+#' tm_polygons(col = "county_name",
+#'            legend.show = FALSE) +
+#'   tm_text(text = "county_name")
 "county_8cc_2010"
