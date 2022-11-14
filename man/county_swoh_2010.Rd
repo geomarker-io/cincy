@@ -25,9 +25,9 @@ county_swoh_2010
 County groupings are derived from CCHMC operational definitions
 }
 \examples{
-tm_shape(county_swoh_2010) +
-tm_polygons(col = "county_name",
-           legend.show = FALSE) +
-  tm_text(text = "county_name")
+tmap::tm_shape(county_swoh_2010) +
+  tmap::tm_polygons(col = "county_name",
+                    legend.show = FALSE) +
+  tmap::tm_text(text = "county_name")
 }
 \keyword{datasets}
