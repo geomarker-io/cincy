@@ -6,7 +6,8 @@ hamilton_tract_to_cincy_neighborhood_2010 <-
   read_csv('data-raw/hamilton_tract_to_cincy_neighborhood_2010.csv',
            col_types = list(col_character(), col_character(), col_character()))
 
-usethis::use_data(hamilton_tract_to_cincy_neighborhood_2010, overwrite = TRUE)
+saveRDS(hamilton_tract_to_cincy_neighborhood_2010,
+        "data-raw/hamilton_tract_to_cincy_neighborhood_2010.rds")
 
 hamilton_tract_to_cincy_neighborhood_2020 <-
   tibble::tribble(
@@ -239,4 +240,6 @@ hamilton_tract_to_cincy_neighborhood_2020 <-
     "Wyoming", "39061022602"
   )
 
-usethis::use_data(hamilton_tract_to_cincy_neighborhood_2020, overwrite = TRUE)
+saveRDS(hamilton_tract_to_cincy_neighborhood_2020,
+        "data-raw/hamilton_tract_to_cincy_neighborhood_2020.rds")
+

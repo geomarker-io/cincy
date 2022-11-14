@@ -5,4 +5,4 @@ weight_points <-
   suppressWarnings() |>
   dplyr::select(pop = POP20, homes = HOUSING20, area = ALAND20)
 
-usethis::use_data(weight_points, overwrite = TRUE, internal = TRUE)
+saveRDS(weight_points, "data-raw/weight_points.rds")

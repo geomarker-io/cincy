@@ -13,6 +13,7 @@ RoxygenNote: 7.2.1
 Depends: 
     R (>= 2.10)
 LazyData: true
+LazyDataCompression: xz
 URL: https://geomarker.io/cincy/
 Imports: 
     dplyr,

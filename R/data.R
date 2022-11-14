@@ -57,12 +57,6 @@ NULL
 #' @source See `data-raw/make_tract_neigh_crosswalk_data.R` for tract to neighborhood lookup table
 "neigh_cchmc_2020"
 
-#' Tract to Neighborhood Lookup 2010
-"hamilton_tract_to_cincy_neighborhood_2010"
-
-#' Tract to Neighborhood Lookup 2020
-"hamilton_tract_to_cincy_neighborhood_2020"
-
 #' Deprivation Index
 #'
 #' An example census tract-level dataset.  A simple features object of all census tracts in
