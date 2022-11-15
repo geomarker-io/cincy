@@ -15,7 +15,8 @@ neigh_ccc <-
     layer = "Cincinnati_Community_Council_Neighborhoods"
   ) |>
   st_transform(5072) |>
-  select(neighborhood = NEIGH)
+  select(neighborhood = NEIGH) |>
+  st_cast("MULTIPOLYGON")
 
 neigh_sna <-
   st_read(
@@ -23,7 +24,9 @@ neigh_sna <-
     layer = "Cincinnati_Statistical_Neighborhood_Approximations"
   ) |>
   st_transform(5072) |>
-  select(neighborhood = SNA_NAME)
+  select(neighborhood = SNA_NAME) |>
+  st_cast("MULTIPOLYGON") |>
+  st_make_valid()
 
 usethis::use_data(neigh_ccc, neigh_sna, overwrite = TRUE)
 
