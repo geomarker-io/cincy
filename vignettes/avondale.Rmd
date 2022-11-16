@@ -2,7 +2,7 @@
 title: "Avondale: A Local Geography Case Study"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Avondale}
+  %\VignetteIndexEntry{Avondale: A Local Geography Case Study}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
