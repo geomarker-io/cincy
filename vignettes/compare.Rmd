@@ -1,14 +1,13 @@
 ---
 title: "Compare {cincy} Geographies App"
-output: 
-  flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
-    theme: bootstrap
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Compare {cincy} Geographies App
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
-library(flexdashboard)
 library(cincy)
 library(sf)
 library(tmap)
