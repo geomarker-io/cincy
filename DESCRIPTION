@@ -34,7 +34,9 @@ Suggests:
     leaflet,
     ggplot2,
     tidyr,
-    glue
+    glue,
+    leafsync,
+    leaflet.extras
 Remotes:
     yutannihilation/ggsflabel
 Config/testthat/edition: 3
