@@ -9,7 +9,7 @@ Description: Provide simple feature (sf) objects for Cincinnati neighborhood, tr
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.2
 Depends: 
     R (>= 2.10)
 LazyData: true
