@@ -21,6 +21,7 @@ reference:
   - neigh_sna
   - neigh_cchmc_2010
   - neigh_cchmc_2020
+  - add_neighborhood
 - title: Interpolate
   contents:
   - interpolate

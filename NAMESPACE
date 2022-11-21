@@ -2,6 +2,7 @@
 
 export(":=")
 export(.data)
+export(add_neighborhood)
 export(as_label)
 export(as_name)
 export(enquo)

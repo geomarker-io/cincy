@@ -34,6 +34,7 @@ source, and optionally vintage:
 | `tract_tigris_2010`   |   tract   | tigris  |  2010   |
 | `tract_tigris_2000`   |   tract   | tigris  |  2000   |
 | `neigh_sna`           |   neigh   |   sna   |         |
+| `neigh_cchmc_2020`    |   neigh   |  cchmc  |  2020   |
 | `neigh_cchmc_2010`    |   neigh   |  cchmc  |  2010   |
 | `neigh_ccc`           |   neigh   |   ccc   |         |
 | `county_swoh_2010`    |  county   |  swoh   |  2010   |
@@ -65,7 +66,7 @@ Data are returned as simple features objects.
 library(sf)
 ```
 
-    ## Linking to GEOS 3.11.0, GDAL 3.5.0, PROJ 9.0.1; sf_use_s2() is TRUE
+    ## Linking to GEOS 3.11.1, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE
 
 For example, to get Cincinnati neighborhoods, as defined by the most
 recent version of community council boundaries from CAGIS:
@@ -75,7 +76,7 @@ cincy::neigh_ccc
 ```
 
     ## Simple feature collection with 75 features and 1 field
-    ## Geometry type: GEOMETRY
+    ## Geometry type: MULTIPOLYGON
     ## Dimension:     XY
     ## Bounding box:  xmin: 964487.9 ymin: 1841115 xmax: 994473.1 ymax: 1859227
     ## Projected CRS: NAD83(NSRS2007) / Conus Albers
