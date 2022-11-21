@@ -5,7 +5,6 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/geomarker-io/cincy/workflows/R-CMD-check/badge.svg)](https://github.com/geomarker-io/cincy/actions)
 [![R-CMD-check](https://github.com/geomarker-io/cincy/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/geomarker-io/cincy/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
