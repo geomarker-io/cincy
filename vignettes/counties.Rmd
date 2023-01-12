@@ -10,7 +10,7 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
+  comment = "",
   echo = FALSE
 )
 ```
@@ -22,11 +22,22 @@ library(ggplot2)
 
 ```{r}
 make_county_map <- function(county_def) {
-  ggplot(county_def) +
-  geom_sf(aes(fill = county_name)) +
-  ggsflabel::geom_sf_label(aes(label = county_name)) +
-  ggthemes::theme_map() +
-  theme(legend.position = "none")
+
+  table <-
+    county_def |>
+    sf::st_drop_geometry() |>
+    knitr::kable()
+
+  map <-
+    ggplot(county_def) +
+    geom_sf(aes(fill = county_name)) +
+    ggsflabel::geom_sf_label(aes(label = county_name)) +
+    ggthemes::theme_map() +
+    theme(legend.position = "none")
+
+  print(map)
+
+  return(table)
 }
 ```
 

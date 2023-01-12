@@ -25,9 +25,9 @@ library(ggplot2)
 tmap_mode("view")
 ```
 
-## Neighborhoods
+## Neighborhood
 
-Typically when trying to describe local place-based characteristics, the geographic unit of interest is neighborhood. Neighborhoods are where people live and interact and tend to have their own identities. However, neighborhoods are not always well-defined and few data products are available directly at the neighborhood level. 
+When trying to describe local, place-based characteristics, the typical geographic unit of interest is [neighborhood](vignettes/geographies.html#neighborhoods). Neighborhoods are where people live and interact and tend to have their own identities. However, neighborhoods are not always well-defined and few data products are available directly at the neighborhood level. 
 
 Here we will use the Avondale neighborhood in Cincinnati, Ohio to examine potential issues when working with local geographies. In Cincinnati, neighborhoods are defined by neighborhood community councils. However, other definitions (such as Statistical Neighborhood Approximations) have modified neighborhood boundaries to align with Census tract boundaries and are therefore more commonly used in research. 
 
@@ -64,9 +64,9 @@ tm_basemap(leaflet::providers$CartoDB.Positron) +
 
 ## Approximating neighborhood using tracts
 
-Census tracts are often used to approximate neighborhoods. As a common unit of area defined by the U.S. Census Bureau, tracts are relatively stable over time and have an average population of 4,000 residents. Although not based on governmental neighborhood boundaries, tracts are meant to describe contextually similar areas. 
+[Census tracts](vignettes/geographies.html#census-tracts) are often used to approximate neighborhoods. As a common unit of area defined by the U.S. Census Bureau, tracts are relatively stable over time and have an average population of 4,000 residents. Although not based on governmental neighborhood boundaries, tracts are meant to describe contextually similar areas. 
 
-However, tract definitions are subject to change decennially. For example, Avondale is comprised of 5 2000-vintage tracts, but only 4 2010-vintage tracts. The maps below show that two 2000 tracts merge to one 2010 tract. 
+In Hamilton County, there were 230 tracts in 2000, 222 in 2010, and 226 in 2020. Tracts can be merged or split every ten years by the Census Bureau, but tract identifiers are always unique. For example, the 2000 tracts `39061006700` and `39061003400` are merged in 2010, and the new tract is given the distinct identifier `39061027000`. This means that Avondale is comprised of five vintage 2000 tracts, but only four vintage 2010 tracts. The tracts that make up Avondale did not change from 2010 to 2020. 
 
 ```{r}
 avondale_tracts_2000 <- cincy::tract_tigris_2000 |>
@@ -93,35 +93,29 @@ p2 <- ggplot() +
 cowplot::plot_grid(p1, p2, nrow = 1, labels = c("2000", "2010"))
 ```
 
-The tracts that make up Avondale do not change from 2010 to 2020. 
-
-In Hamilton County, there are 230 tracts in 2000, 222 in 2010, and 226 in 2020. Tracts can be merged or split every 10 years, but tract identifiers are always unique. For example, the 2000 tracts `39061006700` and `39061003400` are merged in 2010, and the new tract is given an identifier (`39061027000`) that is different from either of the previous identifiers.
-
 ## Approximating neighborhood using ZCTA
 
-Zip Code Tabulation Areas (ZCTAs) are also used to approximate neighborhood due to their accessibility. ZIP code is a component of postal addresses and is therefore available when neighborhood and/or tract may not be. ZIP codes can also sometimes be shared with full addresses cannot. 
-
-However, ZCTA boundaries are based on postal routes rather than contextual neighborhood characteristics, and therefore are not always good neighborhood approximations. Here we show how Avondale aligns with the surrounding ZCTAs.
+ZIP codes and their corresponding [Zip Code Tabulation Areas](vignettes/geographies.html#zip-codes) (ZCTAs) are also used to approximate neighborhood due to their accessibility. A ZIP code is a component of postal addresses and is available when neighborhood and/or tract may not be. ZIP codes can also sometimes be shared when full addresses cannot. However, ZCTA boundaries are based on postal routes rather than contextual neighborhood characteristics, and therefore are not always good neighborhood approximations. Here we show how Avondale aligns with the surrounding ZCTAs.
 
 ```{r}
 zcta <- cincy::zcta_tigris_2010 |>
-  filter(zcta %in% c("45229", 
-                     "45217", 
-                     "45220", 
-                     "45219", 
-                     "45206", 
+  filter(zcta %in% c("45229",
+                     "45217",
+                     "45220",
+                     "45219",
+                     "45206",
                      "45207")) |>
   mutate(main = ifelse(zcta == "45229", TRUE, FALSE))
 
 tm_basemap(leaflet::providers$CartoDB.Positron) +
   tm_shape(zcta) +
-  tm_polygons(alpha = 0.5, 
-              col = "main", 
-              palette = c("gray90", "gray50"), 
+  tm_polygons(alpha = 0.5,
+              col = "main",
+              palette = c("gray90", "gray50"),
               legend.show = FALSE) +
   tm_text("zcta") +
   tm_shape(avondale_tract_aligned) +
-  tm_polygons(alpha = 0.3, 
+  tm_polygons(alpha = 0.3,
               col = "blue")
 ```
 

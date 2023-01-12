@@ -1,6 +1,6 @@
 #' Spatially interpolate community-level data
 #'
-#' Weights at the census block level are used to spatially interpolate different geographies.
+#' Weights at the census block-level are used to spatially interpolate different geographies.
 #' Block-level total population, total number of homes, or total area from the 2020 Census
 #' can be chosen to use for the weights.
 #' All *numeric* variables in `from` are interpolated *non-extensively*,

@@ -16,7 +16,7 @@ numeric values to be interpolated into target geographies}
 2020 census block estimates to interpolate the values}
 }
 \description{
-Weights at the census block level are used to spatially interpolate different geographies.
+Weights at the census block-level are used to spatially interpolate different geographies.
 Block-level total population, total number of homes, or total area from the 2020 Census
 can be chosen to use for the weights.
 All \emph{numeric} variables in \code{from} are interpolated \emph{non-extensively},

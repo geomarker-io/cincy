@@ -25,10 +25,16 @@ library(sf)
 d_tract <- st_transform(cincy::dep_index, 3735)
 ```
 
-
 The `cincy` package provides commonly used Cincinnati geographies, including census tracts, neighborhoods, and ZIP Code Tabulation Areas, as `sf` objects.
 
 ## Census Tracts
+
+Census tracts are small statistical [subdivisions](https://www2.census.gov/geo/pdfs/reference/geodiagram.pdf) of a county, each with an average population of about 4,000 (max: 1,200; min: 8,000), that are redefined every 10 years.
+Census tracts are the most often used level of census geography at which the most precise American Community Survey data is available.
+
+#### Hamilton County, OH
+
+Below is a map of the (2010 vintage) census tracts in Hamilton County, Ohio colored relative to the estimated fraction of households in poverty. From 2010-2019 there were 222 census tracts in Hamilton County, but this number was 230 for 2000-2009 and 226 for 2020-2029. 
 
 ```{r}
 #| fig-align: center
@@ -39,19 +45,23 @@ d_tract |>
               style = "cont", 
               title = "Fraction Poverty", 
               breaks = seq(0, 1, 0.2)) +
-  tm_layout(frame = FALSE, 
-            legend.outside = TRUE)
+  tm_layout(frame = FALSE,
+            legend.text.size = 0.8,
+            legend.outside = FALSE) +
+  tm_scale_bar(text.size = 0.8, position = c("center", "BOTTOM"))
 ```
 
--   Census tracts are small statistical subdivisions of a county that change every 10 years.
-
--   Census tracts have a population of about 4,000 on average (max: 1,200; min: 8,000)
-
--   Census tracts are the smallest unit of area with data available for most American Community Survey variables with reasonable margins of error.
-
--   There were 230 census tracts recorded in Hamilton County in the 2000 census, 222 in the 2010 census, and 226 in the 2020 census.
-
 ## Neighborhoods
+
+Although census tracts approximate local neighborhoods, they are mostly based on population size and streets or other natural boundaries. Neighborhood boundaries can be defined in other ways that may be more appropriate in the context of policy changes or interventions. Below are three different neighborhood definitions in the Cincinnati area.
+
+- **Cincinnati Community Council (CCC) Neighborhoods**: Cincinnati Community Council neighborhood definitions for neighborhoods within the Cincinnati city limits
+- **Statistical Neighborhood Approximations (SNA) Neighborhoods**: Created by matching census tract boundaries to the Community Council boundaries as closely as possible
+- **Tract Boundary-Based Neighborhoods**: Expansion of neighborhood boundaries to include all neighborhoods within the county
+	
+#### Tract Boundary-Based Neighborhoods
+
+Below is a map of the (2010 vintage) tract boundary-based neighborhoods in Hamilton County, Ohio colored relative to the estimated fraction of households in poverty.
 
 ```{r}
 #| fig-align: center
@@ -64,19 +74,24 @@ d_tract |>
               style = "cont", 
               title = "Fraction Poverty", 
               breaks = seq(0, 1, 0.2)) +
-  tm_layout(frame = FALSE, 
-            legend.outside = TRUE)
+  tm_layout(frame = FALSE,
+            legend.text.size = 0.8,
+            legend.outside = FALSE) +
+  tm_scale_bar(text.size = 0.8, position = c("center", "BOTTOM"))
 ```
 
--   Although census tracts approximate local neighborhoods, they are mostly based on population size. Neighborhood boundaries can be defined in other ways that may be more appropriate in the context of policy changes or interventions. Below are three different neighborhood definitions in the Cincinnati area.
-
-    -   **Cincinnati Community Council (CCC) Neighborhoods**: Cincinnati Community Council neighborhood definitions for neighborhoods within the Cincinnati city limits
-
-    -   **Statistical Neighborhood Approximations (SNA) Neighborhoods**: Created by matching census tract boundaries to the Community Council boundaries as closely as possible
-
-    -   **Tract Boundary-Based Neighborhoods**: Expansion of neighborhood boundaries to include all neighborhoods within the county
-
 ## ZIP Codes
+
+Zone Improvement Plan (ZIP) codes are often used for place-based data because matching them to a mailing address doesn't require geocoding and spatial linkage; however, using ZIP codes can cause substantial scientific problems.
+
+ZIP codes are continuously defined and redefined over time as collections of different streets by the US Postal Service.  They change frequently and do not have defined zonal boundaries, but the US Census Bureau developed the ZIP code tabulation area (ZCTA) product as a way to aggregate census data and link them to ZIP codes.
+The area of both ZCTAs and ZIP codes varies widely with some representing over 10,000 sq. mi. of land area but other representing densely populated areas as small as 2 city blocks. The population is similarly variable with an average population of about 10,000 but many ZIP codes representing less than 1,000 and even less than 100 individuals. 
+
+Unlike nearly all other census geographies, ZCTAs are not based on population or contextual neighborhood boundaries, but rather on the location of delivery post offices. Millions of Americans currently use a mailing address that corresponds to a neighboring town, village, or neighborhood where they receive their mail from, instead of the jurisdiction where they actually live. ZIP Codes do not always properly represent the environment of their inhabitants, and spatial analyses utilizing ZIP Codes have misled place-based health researchers. One notable example is the recent Flint drinking water crisis, where the misalignment of ZIP boundaries with the municipal boundaries of the City of Flint, Michigan caused researchers and public health officials to initially conclude that increased blood lead levels were not due to drinking water contamination.
+
+#### Hamilton County, OH ZCTAs
+
+Below is a map of the (2010 vintage) ZCTAs in Hamilton County, Ohio colored relative to the estimated fraction of households in poverty. 
 
 ```{r}
 #| fig-align: center
@@ -89,25 +104,164 @@ d_tract |>
               style = "cont", 
               title = "Fraction Poverty", 
               breaks = seq(0, 1, 0.2)) +
-  tm_layout(frame = FALSE, 
-            legend.outside = TRUE)
+  tm_layout(frame = FALSE,
+            legend.text.size = 0.8,
+            legend.outside = FALSE) +
+  tm_scale_bar(text.size = 0.8, position = c("center", "BOTTOM"))
 ```
-
--   ZIP Codes are not areal features, but rather identify the post office or metropolitan area delivery station associated with mailing addresses.
-
--   The U.S. Census defines ZIP Code areal boundaries using Zip Code Tabulation Areas (ZCTAs). ZCTAs are created by grouping census blocks based on the most frequent ZIP Code associated with addresses in that block.
-
--   Because ZIP Codes are part of postal addresses, ZCTAs are more easily attained from address records, and do not require geocoding and spatial overlays like other census geographies.
-
--   However, because ZCTAs are not based on population or contextual neighborhood boundaries as many other census geographies, but rather on the location of delivery post offices, millions of Americans currently use a mailing address that corresponds to a neighboring town, village, or neighborhood where they receive their mail from, instead of the jurisdiction where they actually live. Therefore, ZIP Codes do not always properly represent the environment of their inhabitants, and spatial analyses utilizing ZIP Codes have misled place-based health researchers. One notable example is the recent Flint drinking water crisis, where the misalignment of ZIP boundaries with the municipal boundaries of the City of Flint, Michigan caused researchers and public health officials to initially conclude that increased blood lead levels were not due to drinking water contamination.
 
 ## Comparing Geographies
 
-See app ?
+See the [vignette on Avondale](vignettes/geographies.html) for a detailed case study on the impacts of using these different geographies to estimate neighborhood-level characteristics.
 
--   some notes about how different neighborhood definitions compare/line up ?
+The linked, interactive maps below can be used for side-by-side investigation of different {cincy} geography types and vintages.
 
-**References**
+```{r, echo = FALSE}
+tmap_mode("view")
+tm <- # add fill colors
+  tm_shape(county_7cc_2010, 
+           name = "county_7cc_2010") +
+  tm_polygons(alpha = 0.5,
+              col = "#a6cee3") +
+  tm_shape(county_8cc_2010, 
+           name = "county_8cc_2010") +
+  tm_polygons(alpha = 0.5,
+              col = "#1f78b4") +
+  tm_shape(county_hlthv_2010, 
+           name = "county_hlthv_2010") +
+  tm_polygons(alpha = 0.5,
+              col = "#b2df8a") +
+  tm_shape(county_hlthvoh_2010, 
+           name = "county_hlthvoh_2010") +
+  tm_polygons(alpha = 0.5,
+              col = "#33a02c") +
+  tm_shape(county_swoh_2010, 
+           name = "county_swoh_2010") +
+  tm_polygons(alpha = 0.5,
+              col = "#fb9a99") +
+  tm_shape(neigh_ccc, 
+           name = "neigh_ccc") +
+  tm_polygons(alpha = 0.5,
+              col = "#e31a1c") +
+  tm_shape(neigh_cchmc_2010, 
+           name = "neigh_cchmc_2010") +
+  tm_polygons(alpha = 0.5,
+              col = "#fdbf6f") +
+  tm_shape(neigh_cchmc_2020, 
+           name = "neigh_cchmc_2020") +
+  tm_polygons(alpha = 0.5,
+              col = "#ff7f00") +
+  tm_shape(neigh_sna, 
+           name = "neigh_sna") +
+  tm_polygons(alpha = 0.5,
+              col = "#cab2d6") +
+  tm_shape(tract_tigris_2000, 
+           name = "tract_tigris_2000") +
+  tm_polygons(alpha = 0.5,
+              col = "#6a3d9a") +
+  tm_shape(tract_tigris_2010, 
+           name = "tract_tigris_2010") +
+  tm_polygons(alpha = 0.5,
+              col = "#ffff99") +
+  tm_shape(tract_tigris_2020, 
+           name = "tract_tigris_2020") +
+  tm_polygons(alpha = 0.5,
+              col = "#b15928") +
+  tm_shape(zcta_tigris_2000, 
+           name = "zcta_tigris_2000") +
+  tm_polygons(alpha = 0.5,
+              col = "gray30") +
+  tm_shape(zcta_tigris_2010, 
+           name = "zcta_tigris_2010") +
+  tm_polygons(alpha = 0.5,
+              col = "gray80") +
+  tm_shape(zcta_tigris_2020, 
+           name = "zcta_tigris_2020") +
+  tm_polygons(alpha = 0.5,
+              col = "goldenrod") +
+  tm_facets(as.layers = TRUE, 
+            free.scales.fill = TRUE, 
+            sync = TRUE) 
+
+tm1 <- tm |>
+  tmap_leaflet() |>
+  leaflet::hideGroup(c("county_7cc_2010", 
+                       "county_8cc_2010", 
+                       "county_hlthv_2010", 
+                       "county_hlthvoh_2010", 
+                       "county_swoh_2010", 
+                       "neigh_ccc", 
+                       "neigh_sna", 
+                       "neigh_cchmc_2010", 
+                       "neigh_cchmc_2020",
+                       "tract_tigris_2000", 
+                       "tract_tigris_2020",
+                       "zcta_tigris_2000", 
+                       "zcta_tigris_2010", 
+                       "zcta_tigris_2020")) |>
+  leaflet.extras::addFullscreenControl()
+
+tm2 <- tm |>
+  tmap_leaflet() |>
+  leaflet::hideGroup(c("county_7cc_2010", 
+                       "county_8cc_2010", 
+                       "county_hlthv_2010", 
+                       "county_hlthvoh_2010", 
+                       "county_swoh_2010", 
+                       "neigh_ccc", 
+                       "neigh_sna",  
+                       "neigh_cchmc_2020", 
+                       "tract_tigris_2000", 
+                       "tract_tigris_2010", 
+                       "tract_tigris_2020",
+                       "zcta_tigris_2000", 
+                       "zcta_tigris_2010", 
+                       "zcta_tigris_2020")) |>
+  leaflet.extras::addFullscreenControl() |>
+  leaflet::addLegend("bottomright", 
+                     values = dates, 
+                     colors = c(
+                       "#a6cee3", 
+                       "#1f78b4",
+                       "#b2df8a",
+                       "#33a02c",
+                       "#fb9a99",
+                       "#e31a1c",
+                       "#fdbf6f",
+                       "#ff7f00",
+                       "#cab2d6",
+                       "#6a3d9a",
+                       "#ffff99",
+                       "#b15928",
+                       "gray30",
+                       "gray80",
+                       "goldenrod"),
+                     labels = c(
+                       "county_7cc_2010", 
+                       "county_8cc_2010", 
+                       "county_hlthv_2010", 
+                       "county_hlthvoh_2010", 
+                       "county_swoh_2010", 
+                       "neigh_ccc", 
+                       "neigh_sna",  
+                       "neigh_cchmc_2010", 
+                       "neigh_cchmc_2020", 
+                       "tract_tigris_2000", 
+                       "tract_tigris_2010", 
+                       "tract_tigris_2020",
+                       "zcta_tigris_2000", 
+                       "zcta_tigris_2010", 
+                       "zcta_tigris_2020"
+                       ),
+                     title = "",
+                     opacity = 1) 
+
+leafsync::latticeView(tm1, tm2, ncol = 1, 
+                     sync = list(c(1, 2)), 
+                     sync.cursor = TRUE, 
+                     no.initial.sync = TRUE)
+```
+## References
 
 <https://www2.census.gov/geo/pdfs/education/CensusTracts.pdf>
 

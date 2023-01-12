@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Spatial interpolation is the process of transforming data from one spatial resolution to another. The `cincy::interpolate` function uses census block group level weights to interpolate data from one `cincy` geography to another `cincy` geography. Variables prefixed with `n_` will be interpolated extensively (weighted sum), and all other numeric variables will be interpolated intensively (weighted mean).
+Spatial interpolation is the process of transforming data from one spatial resolution to another (e.g. from census tract to ZIP code). The `cincy::interpolate` function uses census block-level weights to interpolate data from one `cincy` geography to another `cincy` geography. Variables prefixed with `n_` will be interpolated extensively (weighted sum), and all other numeric variables will be interpolated intensively (weighted mean).
 
 Here, we interpolate `fraction_poverty` from the 2018 American Community Survey from 2010 census tracts to 2010 Neighborhoods and 2010 ZCTAs.
 
