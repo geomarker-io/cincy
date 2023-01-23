@@ -9,17 +9,17 @@ library(tigris)
 
 hc <- tigris::counties(state = "ohio") |>
   filter(NAME == "Hamilton") |>
-  st_transform(3735) |>
+  st_transform(5072) |>
   select(county_name = NAME)
 
 # districts can change on odd years. cincy region only changed from 2011 to 2013 ??
 # not available prior to 2011
 districts_tigris_2013 <- tigris::congressional_districts(state = "ohio", year = 2013) |>
-  st_transform(3735) |>
+  st_transform(5072) |>
   select(district_name = NAMELSAD)
 
 districts_tigris_2011 <- tigris::congressional_districts(state = "ohio", year = 2011) |>
-  st_transform(3735) |>
+  st_transform(5072) |>
   select(district_name = NAMELSAD)
 
 intersect_geo <- function(geo, crop_geo) {
