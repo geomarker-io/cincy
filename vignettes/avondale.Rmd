@@ -125,20 +125,35 @@ The 45229 ZCTA is most commonly used to represent Avondale, but includes North A
 neigh_int <- cincy::interpolate(dep_index, to = cincy::neigh_cchmc_2010, "pop") |>
   sf::st_drop_geometry() |>
   filter(neighborhood == "Avondale") |>
-  mutate(`Percent Poverty` = glue::glue("{round(fraction_poverty * 100)}%")) |>
-  select(geography = neighborhood, `Percent Poverty`)
+  group_by(neighborhood) |>
+  transmute(`Percent Poverty` = glue::glue("{round(fraction_poverty * 100)}%"), 
+         `Percent Assisted Income` = glue::glue("{round(fraction_assisted_income * 100)}%"),
+         `Percent High School Education` = glue::glue("{round(fraction_high_school_edu * 100)}%"),
+         `Percent No Health Insurance` = glue::glue("{round(fraction_no_health_ins * 100)}%"),
+         `Percent Vacant Housing` = glue::glue("{round(fraction_vacant_housing * 100)}%"),
+         `Median Income` = glue::glue("${substr(median_income, 1, 2)}k"),
+         `Deprivation Index` = glue::glue("{round(dep_index,2)}"), 
+         `Percent Black Non-Hispanic/Latino` = "78%") |>
+  rename(geography = neighborhood)
 
 zcta_int <- cincy::interpolate(dep_index, to = cincy::zcta_tigris_2010, "pop") |>
   sf::st_drop_geometry() |>
   filter(zcta == "45229") |>
-  mutate(`Percent Poverty` = glue::glue("{round(fraction_poverty * 100)}%")) |>
-  select(geography = zcta, 
-        `Percent Poverty`)
+  group_by(zcta) |>
+  transmute(`Percent Poverty` = glue::glue("{round(fraction_poverty * 100)}%"), 
+         `Percent Assisted Income` = glue::glue("{round(fraction_assisted_income * 100)}%"),
+         `Percent High School Education` = glue::glue("{round(fraction_high_school_edu * 100)}%"),
+         `Percent No Health Insurance` = glue::glue("{round(fraction_no_health_ins * 100)}%"),
+         `Percent Vacant Housing` = glue::glue("{round(fraction_vacant_housing * 100)}%"),
+         `Median Income` = glue::glue("${substr(median_income, 1, 2)}k"),
+         `Deprivation Index` = glue::glue("{round(dep_index,2)}"), 
+         `Percent Black Non-Hispanic/Latino` = "65%") |>
+  rename(geography = zcta)
 
-hc_pov <- tibble::tibble(geography = "Hamilton County", 
-                         `Percent Poverty` = "16%")
+# hc_pov <- tibble::tibble(geography = "Hamilton County", 
+#                          `Percent Poverty` = "16%")
 
-knitr::kable(bind_rows(neigh_int, zcta_int, hc_pov))
+knitr::kable(bind_rows(neigh_int, zcta_int))
 ```
-In this case, using ZCTA to approximate neighborhood would result in underestimating the percent of the population living in poverty by about 7%. 
+In this case, using ZCTA to approximate neighborhood would result in underestimating the percent of the population living in poverty by about 7%, and the percent of Black Non-Hispanic/Latino residents by about 13%. The estimates in the table above are based on census tract-level measures from the American Community Survey.
 
