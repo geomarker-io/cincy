@@ -168,3 +168,11 @@ NULL
 #'                     legend.show = FALSE) +
 #'   tmap::tm_text(text = "county_name")
 "county_8cc_2010"
+
+#' Congressional Districts (2011 TIGER/Line)
+#' @rdname Districts
+"districts_tigris_2011"
+
+#' Congressional Districts (2013 TIGER/Line)
+#' @rdname Districts
+"districts_tigris_2013"
