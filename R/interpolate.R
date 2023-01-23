@@ -6,35 +6,61 @@
 #' All *numeric* variables in `from` are interpolated *non-extensively*,
 #' except for any numeric variables that start with `n_`, which are interpolated
 #' *extensively*.
-#' @param from sf object with a neighborhood, census tract, or zcta column and
-#' numeric values to be interpolated into target geographies
+#' @param from sf object with a neighborhood, census tract, census block group, census block,
+#'  or zcta column and numeric values to be interpolated into target geographies
 #' @param to sf object of target geography (**must** be one of the cincy:: geography objects)
 #' @param weights use one of "pop" (population), "homes", or "area" from the
 #' 2020 census block estimates to interpolate the values
+#' @details
+#' Possible geography id column names include "neighborhood", "zcta",
+#' "census_tract_id", "census_block_id", "census_block_group_id", and "district_name".
+#' Optionally, the column names (excluding "district_name") can be appended with
+#' the census decade vintage "_2000", "_2010", or "_2000".
 #' @examples
 #' # interpolate 2018 deprivation index to ZIP code level
 #' interpolate(dep_index, cincy::zcta_tigris_2010, "pop")
 #' # interpolate 2018 deprivation index to  2020 census tracts
-#' interpolate(dep_index, cincy::tract_tigris_2020, "pop")
+#' interpolate(dep_index,
+#' cincy::tract_tigris_2020 |> dplyr::rename(census_tract_id_2020 = census_tract_id), "pop")
 #' @export
 interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
 
   wt <- rlang::arg_match(weights)
 
   possible_ids <- c(
-    "neighborhood",
-    "tract_fips",
-    "zcta",
-    paste("census_tract_id", c("", "_2000", "_2010", "_2020"), sep = "")
+    paste("neighborhood", c("", "_2000", "_2010", "_2020"), sep = ""),
+    paste("zcta", c("", "_2000", "_2010", "_2020"), sep = ""),
+    paste("census_tract_id", c("", "_2000", "_2010", "_2020"), sep = ""),
+    paste("census_block_id", c("", "_2000", "_2010", "_2020"), sep = ""),
+    paste("census_block_group_id", c("", "_2000", "_2010", "_2020"), sep = ""),
+    "district_name"
   )
 
+  # check for named geography id column
+  if(all(! possible_ids %in% names(from))) {
+    stop("from must have a properly named geography id column.
+         See documentation for a list of possible ids.") }
+  if(all(! possible_ids %in% names(to))) {
+    stop("to must have a properly named geography id column.
+         See documentation for a list of possible ids.") }
+
+  # check for only 1 geography id column
+  if (sum(possible_ids %in% names(from)) > 1) {
+    stop("from cannot have more than one geography id column.") }
+  if (sum(possible_ids %in% names(to)) > 1) {
+    stop("to cannot have more than one geography id column.") }
+
+  # pull out id column names
   from_id <- possible_ids[possible_ids %in% names(from)]
   to_id <- possible_ids[possible_ids %in% names(to)]
-  # TODO, stop if can't find *_id; stop if more than one match for *_id
+
+  # check that id columns have unique names
+  if(from_id == to_id) {
+    stop("geography columns in from and to must have distinct names") }
 
   from <- sf::st_transform(from, sf::st_crs(to))
 
-  # TODO to must be a cincy:: geography object; or,
+  # TODO to must be a cincy:: geography object; or, (not sure how else to check...)
   # at the very least:
   stopifnot(sf::st_crs(weight_points) == sf::st_crs(to))
 
@@ -46,7 +72,7 @@ interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
     dplyr::summarize(total = sum(!!rlang::sym(wt), na.rm = TRUE))
 
   from <- dplyr::left_join(from, total_weights, by = from_id)
-  
+
   from_to_int <-
     sf::st_intersection(from, to) |>
     dplyr::filter(sf::st_is(.data$geometry, c("POLYGON", "MULTIPOLYGON", "GEOMETRYCOLLECTION"))) |>

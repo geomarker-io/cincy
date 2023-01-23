@@ -7,8 +7,8 @@
 interpolate(from, to, weights = c("pop", "homes", "area"))
 }
 \arguments{
-\item{from}{sf object with a neighborhood, census tract, or zcta column and
-numeric values to be interpolated into target geographies}
+\item{from}{sf object with a neighborhood, census tract, census block group, census block,
+or zcta column and numeric values to be interpolated into target geographies}
 
 \item{to}{sf object of target geography (\strong{must} be one of the cincy:: geography objects)}
 
@@ -23,9 +23,16 @@ All \emph{numeric} variables in \code{from} are interpolated \emph{non-extensive
 except for any numeric variables that start with \code{n_}, which are interpolated
 \emph{extensively}.
 }
+\details{
+Possible geography id column names include "neighborhood", "zcta",
+"census_tract_id", "census_block_id", "census_block_group_id", and "district_name".
+Optionally, the column names (excluding "district_name") can be appended with
+the census decade vintage "_2000", "_2010", or "_2000".
+}
 \examples{
 # interpolate 2018 deprivation index to ZIP code level
 interpolate(dep_index, cincy::zcta_tigris_2010, "pop")
 # interpolate 2018 deprivation index to  2020 census tracts
-interpolate(dep_index, cincy::tract_tigris_2020, "pop")
+interpolate(dep_index,
+cincy::tract_tigris_2020 |> dplyr::rename(census_tract_id_2020 = census_tract_id), "pop")
 }
