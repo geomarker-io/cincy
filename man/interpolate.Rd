@@ -8,9 +8,11 @@ interpolate(from, to, weights = c("pop", "homes", "area"))
 }
 \arguments{
 \item{from}{sf object with a neighborhood, census tract, census block group, census block,
-or zcta column and numeric values to be interpolated into target geographies}
+or zcta column and numeric values to be interpolated into target geographies. The \code{from}
+object should be CRS 5072. If not, it will be projected to 5072 for interpolation.}
 
-\item{to}{sf object of target geography (\strong{must} be one of the cincy:: geography objects)}
+\item{to}{sf object of target geography This function is designed to work with
+cincy:: geography objects, and \code{to} objects must be CRS 5072.}
 
 \item{weights}{use one of "pop" (population), "homes", or "area" from the
 2020 census block estimates to interpolate the values}

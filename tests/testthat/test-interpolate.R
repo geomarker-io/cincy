@@ -20,4 +20,6 @@ test_that("ids checks", {
     interpolate(dep_index, cincy::zcta_tigris_2010 |> dplyr::rename(census_tract_id = zcta)))
   expect_error(
     interpolate(dep_index, cincy::zcta_tigris_2010 |> sf::st_transform(3537)))
+  expect_message(
+    interpolate(dep_index |> sf::st_transform(3537), cincy::zcta_tigris_2010))
 })

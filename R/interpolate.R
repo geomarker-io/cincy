@@ -7,8 +7,10 @@
 #' except for any numeric variables that start with `n_`, which are interpolated
 #' *extensively*.
 #' @param from sf object with a neighborhood, census tract, census block group, census block,
-#'  or zcta column and numeric values to be interpolated into target geographies
-#' @param to sf object of target geography (**must** be one of the cincy:: geography objects)
+#'  or zcta column and numeric values to be interpolated into target geographies. The `from`
+#'  object should be CRS 5072. If not, it will be projected to 5072 for interpolation.
+#' @param to sf object of target geography This function is designed to work with
+#'  cincy:: geography objects, and `to` objects must be CRS 5072.
 #' @param weights use one of "pop" (population), "homes", or "area" from the
 #' 2020 census block estimates to interpolate the values
 #' @details
@@ -58,11 +60,16 @@ interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
   if(from_id == to_id) {
     stop("geography columns in from and to must have distinct names") }
 
-  from <- sf::st_transform(from, sf::st_crs(to))
-
-  # TODO to must be a cincy:: geography object; or, (not sure how else to check...)
+  # TODO to must be a cincy:: geography object; or,
   # at the very least:
-  stopifnot(sf::st_crs(weight_points) == sf::st_crs(to))
+  if (sf::st_crs(weight_points) != sf::st_crs(to)) {
+    stop(glue::glue("to must be projected to EPSG:5072, not {sf::st_crs(to)$input}"))
+  }
+
+  if (sf::st_crs(from) != sf::st_crs(to)) {
+    message(glue::glue("from is being projected from {sf::st_crs(from)$input} to {sf::st_crs(to)$input}"))
+    from <- sf::st_transform(from, sf::st_crs(to))
+  }
 
   total_weights <-
     from |>
