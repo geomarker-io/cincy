@@ -90,9 +90,9 @@ cincy:: geography objects, and <code>to</code> objects must be CRS 5072.</p></dd
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Possible geography id column names include "neighborhood", "zcta",
-"census_tract_id", "census_block_id", "census_block_group_id", and "district_name".
-Optionally, the column names (excluding "district_name") can be appended with
-the census decade vintage "_2000", "_2010", or "_2000".</p>
+"census_tract_id", "census_block_id", "census_block_group_id", and "district".
+Optionally, the column names can be appended with the census decade vintage "_2000",
+"_2010", or "_2000" ("district" vintages include "_2011" and "_2013").</p>
     </div>
 
     <div class="section level2">
@@ -105,17 +105,17 @@ the census decade vintage "_2000", "_2010", or "_2000".</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Bounding box:  xmin: 953086.2 ymin: 1838813 xmax: 1010799 ymax: 1893846</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Projected CRS: NAD83(NSRS2007) / Conus Albers</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> First 10 features:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     zcta fraction_assisted_income fraction_high_school_edu median_income</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  45212               0.16410340                0.8421591      41301.12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  45204               0.40392778                0.7188268      25610.82</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  45233               0.05260831                0.9309801      73058.66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  45216               0.27370364                0.7629741      33608.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  45232               0.59374952                0.8475034      17231.43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  45251               0.14625964                0.8819390      57341.77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  45248               0.04986687                0.9435518      70346.04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  45215               0.15621395                0.8797299      58340.53</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  45237               0.28496845                0.8737642      38110.11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 45240               0.14777140                0.9011510      52384.24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    zcta_2010 fraction_assisted_income fraction_high_school_edu median_income</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      45212               0.16410340                0.8421591      41301.12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2      45204               0.40392778                0.7188268      25610.82</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      45233               0.05260831                0.9309801      73058.66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4      45216               0.27370364                0.7629741      33608.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      45232               0.59374952                0.8475034      17231.43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6      45251               0.14625964                0.8819390      57341.77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7      45248               0.04986687                0.9435518      70346.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8      45215               0.15621395                0.8797299      58340.53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9      45237               0.28496845                0.8737642      38110.11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10     45240               0.14777140                0.9011510      52384.24</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    fraction_no_health_ins fraction_poverty fraction_vacant_housing dep_index</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1              0.13237246       0.21703724              0.14662980 0.4261084</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2              0.18178607       0.42233918              0.25960964 0.6255437</span>
@@ -139,8 +139,7 @@ the census decade vintage "_2000", "_2010", or "_2000".</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9  MULTIPOLYGON (((984422.1 18...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10 MULTIPOLYGON (((976570 1863...</span>
 <span class="r-in"><span><span class="co"># interpolate 2018 deprivation index to  2020 census tracts</span></span></span>
-<span class="r-in"><span><span class="fu">interpolate</span><span class="op">(</span><span class="va">dep_index</span>,</span></span>
-<span class="r-in"><span><span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="Tracts.html">tract_tigris_2020</a></span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>census_tract_id_2020 <span class="op">=</span> <span class="va">census_tract_id</span><span class="op">)</span>, <span class="st">"pop"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">interpolate</span><span class="op">(</span><span class="va">dep_index</span>, <span class="fu">cincy</span><span class="fu">::</span><span class="va"><a href="Tracts.html">tract_tigris_2020</a></span>, <span class="st">"pop"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Simple feature collection with 226 features and 8 fields</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Geometry type: MULTIPOLYGON</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Dimension:     XY</span>
