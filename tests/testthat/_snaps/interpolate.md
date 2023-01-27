@@ -9,17 +9,17 @@
       Bounding box:  xmin: 953086.2 ymin: 1838813 xmax: 1010799 ymax: 1893846
       Projected CRS: NAD83(NSRS2007) / Conus Albers
       First 10 features:
-          zcta fraction_assisted_income fraction_high_school_edu median_income
-      1  45212               0.16410340                0.8421591      41301.12
-      2  45204               0.40392778                0.7188268      25610.82
-      3  45233               0.05260831                0.9309801      73058.66
-      4  45216               0.27370364                0.7629741      33608.34
-      5  45232               0.59374952                0.8475034      17231.43
-      6  45251               0.14625964                0.8819390      57341.77
-      7  45248               0.04986687                0.9435518      70346.04
-      8  45215               0.15621395                0.8797299      58340.53
-      9  45237               0.28496845                0.8737642      38110.11
-      10 45240               0.14777140                0.9011510      52384.24
+         zcta_2010 fraction_assisted_income fraction_high_school_edu median_income
+      1      45212               0.16410340                0.8421591      41301.12
+      2      45204               0.40392778                0.7188268      25610.82
+      3      45233               0.05260831                0.9309801      73058.66
+      4      45216               0.27370364                0.7629741      33608.34
+      5      45232               0.59374952                0.8475034      17231.43
+      6      45251               0.14625964                0.8819390      57341.77
+      7      45248               0.04986687                0.9435518      70346.04
+      8      45215               0.15621395                0.8797299      58340.53
+      9      45237               0.28496845                0.8737642      38110.11
+      10     45240               0.14777140                0.9011510      52384.24
          fraction_no_health_ins fraction_poverty fraction_vacant_housing dep_index
       1              0.13237246       0.21703724              0.14662980 0.4261084
       2              0.18178607       0.42233918              0.25960964 0.6255437
@@ -68,6 +68,7 @@
       10 Colerain T~ POLYGON ((972927.5 18556~  0.123    0.895  59730.  0.0978  0.117 
       # ... with 71 more rows, 3 more variables: fraction_vacant_housing <dbl>,
       #   dep_index <dbl>, n_things <dbl>, and abbreviated variable names
-      #   1: neighborhood, 2: fraction_assisted_income, 3: fraction_high_school_edu,
-      #   4: median_income, 5: fraction_no_health_ins, 6: fraction_poverty
+      #   1: neighborhood_2010, 2: fraction_assisted_income,
+      #   3: fraction_high_school_edu, 4: median_income, 5: fraction_no_health_ins,
+      #   6: fraction_poverty
 

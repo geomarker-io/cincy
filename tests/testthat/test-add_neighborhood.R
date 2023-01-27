@@ -6,7 +6,6 @@ test_that("add_neighborhood", {
     dplyr::sample_n(length(letters)) |>
     sf::st_drop_geometry() |>
     tibble::tibble() |>
-    dplyr::rename(census_tract_id_2010 = census_tract_id) |>
     dplyr::mutate(id = letters)
 
   neigh_data <- add_neighborhood(some_2010_tract_data)

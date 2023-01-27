@@ -28,7 +28,7 @@ library(tmap)
 library(tidyr)
 
 d_tract <- st_transform(cincy::dep_index, 3735) |>
-  select(census_tract_id, fraction_poverty)
+  select(census_tract_id_2010, fraction_poverty)
 ```
 
 ```{r}
@@ -115,38 +115,38 @@ d_neigh <-
   d_neigh_pop |>
   st_drop_geometry() |>
   rename(population = fraction_poverty) |>
-  left_join(d_neigh_homes |> st_drop_geometry(), by = "neighborhood") |>
+  left_join(d_neigh_homes |> st_drop_geometry(), by = "neighborhood_2010") |>
   rename(homes = fraction_poverty) |>
-  left_join(d_neigh_area |>  st_drop_geometry(), by = "neighborhood") |>
+  left_join(d_neigh_area |>  st_drop_geometry(), by = "neighborhood_2010") |>
   rename(area = fraction_poverty)
 
 d_zcta <- 
   d_zcta_pop |>
   st_drop_geometry() |>
   rename(population = fraction_poverty) |>
-  left_join(d_zcta_homes |> st_drop_geometry(), by = "zcta") |>
+  left_join(d_zcta_homes |> st_drop_geometry(), by = "zcta_2010") |>
   rename(homes = fraction_poverty) |>
-  left_join(d_zcta_area |>  st_drop_geometry(), by = "zcta") |>
+  left_join(d_zcta_area |>  st_drop_geometry(), by = "zcta_2010") |>
   rename(area = fraction_poverty)
 ```
 
 ```{r}
 #| echo: false
 d_neigh_long <- d_neigh |>
-  pivot_longer(cols = !neighborhood, names_to = "weights", values_to = "fraction_poverty")
+  pivot_longer(cols = !neighborhood_2010, names_to = "weights", values_to = "fraction_poverty")
 
-d_neigh_long <- left_join(cincy::neigh_cchmc_2010, d_neigh_long, by = "neighborhood") |>
+d_neigh_long <- left_join(cincy::neigh_cchmc_2010, d_neigh_long, by = "neighborhood_2010") |>
   st_transform(3735) |>
   mutate(geography = "neighborhood") |>
-  rename(id = neighborhood)
+  rename(id = neighborhood_2010)
 
 d_zcta_long <- d_zcta |>
-  pivot_longer(cols = !zcta, names_to = "weights", values_to = "fraction_poverty")
+  pivot_longer(cols = !zcta_2010, names_to = "weights", values_to = "fraction_poverty")
 
-d_zcta_long <- left_join(cincy::zcta_tigris_2010, d_zcta_long, by = "zcta") |>
+d_zcta_long <- left_join(cincy::zcta_tigris_2010, d_zcta_long, by = "zcta_2010") |>
   st_transform(3735) |>
   mutate(geography = "zcta") |>
-  rename(id = zcta)
+  rename(id = zcta_2010)
 
 d_long <- bind_rows(d_neigh_long, d_zcta_long)
 
@@ -172,14 +172,14 @@ Also note that all three weights yield similar results in this example. However,
 ```{r}
 #| echo: false
 library(GGally)
-ggpairs(d_neigh |> select(-neighborhood))
+ggpairs(d_neigh |> select(-neighborhood_2010))
 ```
 
 **ZCTA `fraction_poverty` interpolated from tract using `population`, `homes`, and `area` weights**
 
 ```{r}
 #| echo: false
-ggpairs(d_zcta |> select(-zcta))
+ggpairs(d_zcta |> select(-zcta_2010))
 ```
 
 

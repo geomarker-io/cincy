@@ -35,21 +35,23 @@ neigh_cchmc_2010 <-
     readr::read_csv("data-raw/hamilton_tract_to_cincy_neighborhood_2010.csv",
       col_types = "ccc"
     ),
-    by = c("census_tract_id")
+    by = c("census_tract_id_2010" = "census_tract_id")
   ) |>
   group_by(neighborhood) |>
   summarise(geometry = sf::st_union(geometry)) |>
-  ungroup()
+  ungroup() |>
+  rename(neighborhood_2010 = neighborhood)
 
 usethis::use_data(neigh_cchmc_2010, overwrite = TRUE)
 
 neigh_cchmc_2020 <-
   left_join(tract_tigris_2020,
             hamilton_tract_to_cincy_neighborhood_2020,
-            by = c("census_tract_id")
+            by = c("census_tract_id_2020" = "census_tract_id")
   ) |>
   group_by(neighborhood) |>
   summarise(geometry = sf::st_union(geometry)) |>
-  ungroup()
+  ungroup() |>
+  rename(neighborhood_2020 = neighborhood)
 
 usethis::use_data(neigh_cchmc_2020, overwrite = TRUE)
