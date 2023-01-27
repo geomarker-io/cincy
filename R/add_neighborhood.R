@@ -42,7 +42,7 @@ add_neighborhood <- function(.x, vintage = c("2010", "2020")) {
     rlang::parse_expr() |>
     rlang::eval_tidy()
 
-  joiner <- "census_tract_id"
+  joiner <- glue::glue("census_tract_id_{vintage}")
   names(joiner) <- tract_id_name
 
   dplyr::left_join(.x, cw, by = joiner)

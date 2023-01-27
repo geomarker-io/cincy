@@ -33,7 +33,7 @@ Here we will use the Avondale neighborhood in Cincinnati, Ohio to examine potent
 
 ```{r}
 avondale_tract_aligned <- cincy::neigh_cchmc_2010 |>
-  filter(neighborhood == "Avondale") |>
+  filter(neighborhood_2010 == "Avondale") |>
   mutate(neighborhood = "Avondale - Tract Aligned")
 
 avondale_community_council <- cincy::neigh_ccc |>
@@ -41,7 +41,7 @@ avondale_community_council <- cincy::neigh_ccc |>
   mutate(neighborhood = "Avondale - Community Council")
 
 avondale_tracts_2010 <- cincy::tract_tigris_2010 |>
-    filter(census_tract_id %in% c("39061006900", 
+    filter(census_tract_id_2010 %in% c("39061006900", 
                                 "39061006800", 
                                 "39061006600", 
                                 "39061027000"))
@@ -58,7 +58,7 @@ tm_basemap(leaflet::providers$CartoDB.Positron) +
               col = "blue") +
   tm_shape(avondale_tracts_2010) +
   tm_borders(col = "black") +
-  tm_text("census_tract_id", 
+  tm_text("census_tract_id_2010", 
           col = "black")
 ```
 
@@ -70,23 +70,23 @@ In Hamilton County, there were 230 tracts in 2000, 222 in 2010, and 226 in 2020.
 
 ```{r}
 avondale_tracts_2000 <- cincy::tract_tigris_2000 |>
-  filter(census_tract_id %in% c("39061006900", 
+  filter(census_tract_id_2000 %in% c("39061006900", 
                                 "39061006800", 
                                 "39061006600", 
                                 "39061006700", 
                                 "39061003400"))
 
 p1 <- ggplot() +
-  geom_sf(data = avondale_tracts_2000, aes(fill = census_tract_id)) +
+  geom_sf(data = avondale_tracts_2000, aes(fill = census_tract_id_2000)) +
   ggsflabel::geom_sf_label(data = avondale_tracts_2000, 
-                           aes(label = census_tract_id)) +
+                           aes(label = census_tract_id_2000)) +
   ggthemes::theme_map() +
   theme(legend.position = "none")
 
 p2 <- ggplot() +
-  geom_sf(data = avondale_tracts_2010, aes(fill = census_tract_id)) +
+  geom_sf(data = avondale_tracts_2010, aes(fill = census_tract_id_2010)) +
   ggsflabel::geom_sf_label(data = avondale_tracts_2010, 
-                           aes(label = census_tract_id)) +
+                           aes(label = census_tract_id_2010)) +
   ggthemes::theme_map() +
   theme(legend.position = "none")
 
@@ -99,13 +99,13 @@ ZIP codes and their corresponding [Zip Code Tabulation Areas](vignettes/geograph
 
 ```{r}
 zcta <- cincy::zcta_tigris_2010 |>
-  filter(zcta %in% c("45229",
+  filter(zcta_2010 %in% c("45229",
                      "45217",
                      "45220",
                      "45219",
                      "45206",
                      "45207")) |>
-  mutate(main = ifelse(zcta == "45229", TRUE, FALSE))
+  mutate(main = ifelse(zcta_2010 == "45229", TRUE, FALSE))
 
 tm_basemap(leaflet::providers$CartoDB.Positron) +
   tm_shape(zcta) +
@@ -113,7 +113,7 @@ tm_basemap(leaflet::providers$CartoDB.Positron) +
               col = "main",
               palette = c("gray90", "gray50"),
               legend.show = FALSE) +
-  tm_text("zcta") +
+  tm_text("zcta_2010") +
   tm_shape(avondale_tract_aligned) +
   tm_polygons(alpha = 0.3,
               col = "blue")
@@ -124,8 +124,8 @@ The 45229 ZCTA is most commonly used to represent Avondale, but includes North A
 ```{r}
 neigh_int <- cincy::interpolate(dep_index, to = cincy::neigh_cchmc_2010, "pop") |>
   sf::st_drop_geometry() |>
-  filter(neighborhood == "Avondale") |>
-  group_by(neighborhood) |>
+  filter(neighborhood_2010 == "Avondale") |>
+  group_by(neighborhood_2010) |>
   transmute(`Percent Poverty` = glue::glue("{round(fraction_poverty * 100)}%"), 
          `Percent Assisted Income` = glue::glue("{round(fraction_assisted_income * 100)}%"),
          `Percent High School Education` = glue::glue("{round(fraction_high_school_edu * 100)}%"),
@@ -134,12 +134,12 @@ neigh_int <- cincy::interpolate(dep_index, to = cincy::neigh_cchmc_2010, "pop") 
          `Median Income` = glue::glue("${substr(median_income, 1, 2)}k"),
          `Deprivation Index` = glue::glue("{round(dep_index,2)}"), 
          `Percent Black Non-Hispanic/Latino` = "78%") |>
-  rename(geography = neighborhood)
+  rename(geography = neighborhood_2010)
 
 zcta_int <- cincy::interpolate(dep_index, to = cincy::zcta_tigris_2010, "pop") |>
   sf::st_drop_geometry() |>
-  filter(zcta == "45229") |>
-  group_by(zcta) |>
+  filter(zcta_2010 == "45229") |>
+  group_by(zcta_2010) |>
   transmute(`Percent Poverty` = glue::glue("{round(fraction_poverty * 100)}%"), 
          `Percent Assisted Income` = glue::glue("{round(fraction_assisted_income * 100)}%"),
          `Percent High School Education` = glue::glue("{round(fraction_high_school_edu * 100)}%"),
@@ -148,7 +148,7 @@ zcta_int <- cincy::interpolate(dep_index, to = cincy::zcta_tigris_2010, "pop") |
          `Median Income` = glue::glue("${substr(median_income, 1, 2)}k"),
          `Deprivation Index` = glue::glue("{round(dep_index,2)}"), 
          `Percent Black Non-Hispanic/Latino` = "65%") |>
-  rename(geography = zcta)
+  rename(geography = zcta_2010)
 
 # hc_pov <- tibble::tibble(geography = "Hamilton County", 
 #                          `Percent Poverty` = "16%")

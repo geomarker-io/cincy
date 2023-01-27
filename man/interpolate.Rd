@@ -27,14 +27,13 @@ except for any numeric variables that start with \code{n_}, which are interpolat
 }
 \details{
 Possible geography id column names include "neighborhood", "zcta",
-"census_tract_id", "census_block_id", "census_block_group_id", and "district_name".
-Optionally, the column names (excluding "district_name") can be appended with
-the census decade vintage "_2000", "_2010", or "_2000".
+"census_tract_id", "census_block_id", "census_block_group_id", and "district".
+Optionally, the column names can be appended with the census decade vintage "_2000",
+"_2010", or "_2000" ("district" vintages include "_2011" and "_2013").
 }
 \examples{
 # interpolate 2018 deprivation index to ZIP code level
 interpolate(dep_index, cincy::zcta_tigris_2010, "pop")
 # interpolate 2018 deprivation index to  2020 census tracts
-interpolate(dep_index,
-cincy::tract_tigris_2020 |> dplyr::rename(census_tract_id_2020 = census_tract_id), "pop")
+interpolate(dep_index, cincy::tract_tigris_2020, "pop")
 }

@@ -11,7 +11,7 @@ An object of class \code{sf} (inherits from \code{data.frame}) with 54 rows and 
 
 An object of class \code{sf} (inherits from \code{data.frame}) with 57 rows and 2 columns.
 
-An object of class \code{sf} (inherits from \code{data.frame}) with 59 rows and 2 columns.
+An object of class \code{sf} (inherits from \code{data.frame}) with 60 rows and 2 columns.
 }
 \source{
 ZCTAs were downloaded directly from the Census Bureau using the \href{https://github.com/walkerke/tigris}{tigris} package

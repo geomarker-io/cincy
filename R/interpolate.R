@@ -15,15 +15,14 @@
 #' 2020 census block estimates to interpolate the values
 #' @details
 #' Possible geography id column names include "neighborhood", "zcta",
-#' "census_tract_id", "census_block_id", "census_block_group_id", and "district_name".
-#' Optionally, the column names (excluding "district_name") can be appended with
-#' the census decade vintage "_2000", "_2010", or "_2000".
+#' "census_tract_id", "census_block_id", "census_block_group_id", and "district".
+#' Optionally, the column names can be appended with the census decade vintage "_2000",
+#' "_2010", or "_2000" ("district" vintages include "_2011" and "_2013").
 #' @examples
 #' # interpolate 2018 deprivation index to ZIP code level
 #' interpolate(dep_index, cincy::zcta_tigris_2010, "pop")
 #' # interpolate 2018 deprivation index to  2020 census tracts
-#' interpolate(dep_index,
-#' cincy::tract_tigris_2020 |> dplyr::rename(census_tract_id_2020 = census_tract_id), "pop")
+#' interpolate(dep_index, cincy::tract_tigris_2020, "pop")
 #' @export
 interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
 
@@ -35,7 +34,7 @@ interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
     paste("census_tract_id", c("", "_2000", "_2010", "_2020"), sep = ""),
     paste("census_block_id", c("", "_2000", "_2010", "_2020"), sep = ""),
     paste("census_block_group_id", c("", "_2000", "_2010", "_2020"), sep = ""),
-    "district_name"
+    paste("district", c("", "_2011", "_2013"), sep = "")
   )
 
   # check for named geography id column
