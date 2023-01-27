@@ -41,6 +41,8 @@ source, and optionally vintage:
 | `county_hlthv_2010`   |  county   |  hlthv  |  2010   |
 | `county_8cc_2010`     |  county   |   8cc   |  2010   |
 | `county_7cc_2010`     |  county   |   7cc   |  2010   |
+| `districts_tigris_2011`   |   congressional district   | tigris  |  2011   |
+| `districts_tigris_2013`   |   congressional district   | tigris  |  2013   |
 
 Use autocomplete functionality at the `R` prompt (e.g., typing `cincy::`
 and pressing `TAB` twice) to find the needed `sf` object, narrowing
