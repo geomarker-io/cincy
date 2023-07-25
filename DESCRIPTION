@@ -21,7 +21,8 @@ Imports:
     sf,
     tibble,
     tidyselect, 
-    codec (>= 0.6.0)
+    codec (>= 0.6.0), 
+    purrr
 Suggests: 
     GGally,
     ggsflabel,
