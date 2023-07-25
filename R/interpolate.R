@@ -133,6 +133,32 @@ interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
         .fns = ~sum(.x, na.rm = TRUE)))
 
   out_data <- dplyr::left_join(to_non_extensive, to_extensive, by = to_id)
-  dplyr::left_join(to, out_data, by = to_id)
+  out_data <- dplyr::left_join(to, out_data, by = to_id)
+
+  # re-assign metadata, if metadata exists
+  from_tdr <- codec:::make_tdr_from_attr(from)
+
+  if (!is.null(from_tdr$profile)) { # better way to check if metadata exists?
+    desc <- purrr::pluck(from_tdr)
+    flds <- purrr::pluck(from_tdr, "schema", "fields")
+    purrr::pluck(desc, "schema") <- NULL
+    desc <- purrr::compact(desc)
+
+    out_data <- codec::add_attrs(out_data, !!!desc)
+
+    # new geography identifier
+    out_data <- codec::add_col_attrs(out_data,
+                                     var = names(out_data)[1],
+                                     name = names(out_data)[1],
+                                     title = "Geography Identifier",
+                                     type = "string")
+
+    for (the_field in names(flds)[2:length(names(flds))]) {
+      out_data[[the_field]] <-
+        codec::add_attrs(out_data[[the_field]], !!!flds[[the_field]])
+    }
+  }
+
+  return(out_data)
 }
 

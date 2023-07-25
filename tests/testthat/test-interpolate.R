@@ -36,3 +36,12 @@ test_that("ids checks", {
   expect_message(
     interpolate(dep_index |> sf::st_transform(3537), cincy::zcta_tigris_2010))
 })
+
+test_that("interpolate keeps metadata", {
+  hamilton_landcover_zcta <- interpolate(codec::codec_data("hamilton_landcover") |>
+                                           dplyr::left_join(cincy::tract_tigris_2010) |>
+                                           sf::st_as_sf(),
+                                         cincy::zcta_tigris_2010,
+                                         "pop")
+  expect_snapshot(codec::glimpse_tdr(hamilton_landcover_zcta))
+})
