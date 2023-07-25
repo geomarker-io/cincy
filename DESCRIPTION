@@ -20,7 +20,8 @@ Imports:
     rlang (>= 0.4.11),
     sf,
     tibble,
-    tidyselect
+    tidyselect, 
+    codec
 Suggests: 
     GGally,
     ggsflabel,
@@ -36,8 +37,7 @@ Suggests:
     tidyr,
     glue,
     leafsync,
-    leaflet.extras, 
-    codec
+    leaflet.extras
 Remotes:
     yutannihilation/ggsflabel,
     geomarker-io/codec
