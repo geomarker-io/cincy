@@ -78,15 +78,16 @@
       codec::glimpse_tdr(hamilton_landcover_zcta)
     Output
       $attributes
-      # A tibble: 6 x 2
-        name     value                                                          
-        <chr>    <chr>                                                          
-      1 profile  tabular-data-resource                                          
-      2 name     hamilton_landcover                                             
-      3 path     hamilton_landcover.csv                                         
-      4 version  0.1.0                                                          
-      5 title    Hamilton County Landcover and Built Environment Characteristics
-      6 homepage https://geomarker.io/hamilton_landcover                        
+      # A tibble: 7 x 2
+        name        value                                                             
+        <chr>       <chr>                                                             
+      1 profile     tabular-data-resource                                             
+      2 name        hamilton_landcover                                                
+      3 path        hamilton_landcover.csv                                            
+      4 version     0.1.0                                                             
+      5 title       Hamilton County Landcover and Built Environment Characteristics   
+      6 homepage    https://geomarker.io/hamilton_landcover                           
+      7 description Greenspace, imperviousness, treecanopy, and greenness (EVI) for a~
       
       $schema
       # A tibble: 6 x 4
