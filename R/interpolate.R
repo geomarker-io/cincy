@@ -59,8 +59,6 @@ interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
   if(from_id == to_id) {
     stop("geography columns in from and to must have distinct names") }
 
-  # TODO to must be a cincy:: geography object; or,
-  # at the very least:
   if (sf::st_crs(weight_points) != sf::st_crs(to)) {
     stop(glue::glue("to must be projected to EPSG:5072, not {sf::st_crs(to)$input}"))
   }
@@ -135,10 +133,9 @@ interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
   out_data <- dplyr::left_join(to_non_extensive, to_extensive, by = to_id)
   out_data <- dplyr::left_join(to, out_data, by = to_id)
 
-  # re-assign metadata, if metadata exists
-  from_tdr <- codec:::make_tdr_from_attr(from)
-
-  if (!is.null(from_tdr$profile)) { # better way to check if metadata exists?
+  # re-assign metadata, if it exists
+  if ({!is.null(attr(from, "profile"))} && attr(from, "profile") == "tabular-data-resource") {
+    from_tdr <- codec:::make_tdr_from_attr(from)
     desc <- purrr::pluck(from_tdr)
     flds <- purrr::pluck(from_tdr, "schema", "fields")
     purrr::pluck(desc, "schema") <- NULL
@@ -146,17 +143,13 @@ interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
 
     out_data <- codec::add_attrs(out_data, !!!desc)
 
-    # new geography identifier
-    out_data <- codec::add_col_attrs(out_data,
-                                     var = names(out_data)[1],
-                                     name = names(out_data)[1],
-                                     title = "Geography Identifier",
-                                     type = "string")
-
-    for (the_field in names(flds)[2:length(names(flds))]) {
+    flds <- purrr::discard(flds, \(.x) .x$name == from_id)
+    for (the_field in names(flds)) {
       out_data[[the_field]] <-
         codec::add_attrs(out_data[[the_field]], !!!flds[[the_field]])
     }
+
+    out_data[[to_id]] <- codec::add_attrs(out_data[[to_id]], name = to_id, type = "string")
   }
 
   return(out_data)
