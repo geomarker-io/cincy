@@ -72,32 +72,3 @@
       #   fraction_no_health_ins <dbl>, fraction_poverty <dbl>,
       #   fraction_vacant_housing <dbl>, dep_index <dbl>, n_things <dbl>
 
-# interpolate keeps metadata
-
-    Code
-      codec::glimpse_tdr(hamilton_landcover_zcta)
-    Output
-      $attributes
-      # A tibble: 7 x 2
-        name        value                                                             
-        <chr>       <chr>                                                             
-      1 profile     tabular-data-resource                                             
-      2 name        hamilton_landcover                                                
-      3 path        hamilton_landcover.csv                                            
-      4 version     0.1.0                                                             
-      5 title       Hamilton County Landcover and Built Environment Characteristics   
-      6 homepage    https://geomarker.io/hamilton_landcover                           
-      7 description Greenspace, imperviousness, treecanopy, and greenness (EVI) for a~
-      
-      $schema
-      # A tibble: 6 x 4
-        name                title                          description           type 
-        <chr>               <chr>                          <chr>                 <chr>
-      1 pct_green_2019      Percent Greenspace 2019        percent of pixels in~ numb~
-      2 pct_impervious_2019 Percent Impervious 2019        average percent impe~ numb~
-      3 pct_treecanopy_2016 Percent Treecanopy 2016        average percent tree~ numb~
-      4 evi_2018            Enhanced Vegetation Index 2018 average enhanced veg~ numb~
-      5 year                Year                           data year             inte~
-      6 zcta_2010           Geography Identifier           <NA>                  stri~
-      
-
