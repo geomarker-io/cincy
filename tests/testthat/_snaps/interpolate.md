@@ -3,10 +3,10 @@
     Code
       dep_index_zcta
     Output
-      Simple feature collection with 57 features and 8 fields
+      Simple feature collection with 54 features and 8 fields
       Geometry type: MULTIPOLYGON
       Dimension:     XY
-      Bounding box:  xmin: 953086.2 ymin: 1838813 xmax: 1010799 ymax: 1893846
+      Bounding box:  xmin: 953086.2 ymin: 1838813 xmax: 1003381 ymax: 1871411
       Projected CRS: NAD83(NSRS2007) / Conus Albers
       First 10 features:
          zcta_2010 fraction_assisted_income fraction_high_school_edu median_income

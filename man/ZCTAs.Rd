@@ -7,11 +7,11 @@
 \alias{zcta_tigris_2020}
 \title{ZCTAs}
 \format{
+An object of class \code{sf} (inherits from \code{data.frame}) with 53 rows and 2 columns.
+
 An object of class \code{sf} (inherits from \code{data.frame}) with 54 rows and 2 columns.
 
-An object of class \code{sf} (inherits from \code{data.frame}) with 57 rows and 2 columns.
-
-An object of class \code{sf} (inherits from \code{data.frame}) with 60 rows and 2 columns.
+An object of class \code{sf} (inherits from \code{data.frame}) with 55 rows and 2 columns.
 }
 \source{
 ZCTAs were downloaded directly from the Census Bureau using the \href{https://github.com/walkerke/tigris}{tigris} package
