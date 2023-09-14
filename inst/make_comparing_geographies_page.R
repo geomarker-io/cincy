@@ -143,10 +143,11 @@ tm2 <- tm |>
 leafsync::latticeView(tm1, tm2, ncol = 1, 
                       sync = list(c(1, 2)), 
                       sync.cursor = TRUE, 
-                      no.initial.sync = TRUE) |>
-  mapview::mapshot(
-    file = fs::path(fs::path_package("cincy"), "comparing_geographies.html"),
-    remove_controls = NULL)
+                      no.initial.sync = TRUE) 
+# |>
+#   mapview::mapshot(
+#     file = fs::path(fs::path_package("cincy"), "comparing_geographies.html"),
+#     remove_controls = NULL)
 
 # mapview::mapshot doesn't work with sync maps: https://github.com/r-spatial/leafsync/issues/4
 
