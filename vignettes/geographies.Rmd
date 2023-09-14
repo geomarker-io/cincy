@@ -114,7 +114,7 @@ d_tract |>
 
 See the [vignette on Avondale](vignettes/geographies.html) for a detailed case study on the impacts of using these different geographies to estimate neighborhood-level characteristics.
 
-See two linked, interactive maps that can be used for side-by-side investigation of different {cincy} geography types and vintages here: .
+See [two linked, interactive maps that can be used for side-by-side investigation of different {cincy} geography types and vintages](http://cincy-comparing-geographies.s3-website-us-east-1.amazonaws.com/).
 
 ## References
 
