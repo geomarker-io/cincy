@@ -1,6 +1,6 @@
 Package: cincy
 Title: Cincinnati Neighborhood, Tract, County, and ZIP Code Geographies
-Version: 1.0.3
+Version: 1.1.0
 Authors@R: c(
     person("Cole", "Brokamp", , "cole.brokamp@gmail.com", role = c("aut", "cre")),
     person("Erika", "Rasnick", role = c("aut"))
@@ -21,7 +21,6 @@ Imports:
     sf,
     tibble,
     tidyselect, 
-    codec (>= 0.6.0), 
     purrr
 Suggests: 
     GGally,
@@ -41,6 +40,5 @@ Suggests:
     leaflet.extras
 Remotes:
     yutannihilation/ggsflabel,
-    geomarker-io/codec
 Config/testthat/edition: 3
 VignetteBuilder: knitr

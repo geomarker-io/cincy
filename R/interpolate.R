@@ -133,25 +133,6 @@ interpolate <- function(from, to, weights = c("pop", "homes", "area")) {
   out_data <- dplyr::left_join(to_non_extensive, to_extensive, by = to_id)
   out_data <- dplyr::left_join(to, out_data, by = to_id)
 
-  # re-assign metadata, if it exists
-  if ({!is.null(attr(from, "profile"))} && attr(from, "profile") == "tabular-data-resource") {
-    from_tdr <- codec:::make_tdr_from_attr(from)
-    desc <- purrr::pluck(from_tdr)
-    flds <- purrr::pluck(from_tdr, "schema", "fields")
-    purrr::pluck(desc, "schema") <- NULL
-    desc <- purrr::compact(desc)
-
-    out_data <- codec::add_attrs(out_data, !!!desc)
-
-    flds <- purrr::discard(flds, \(.x) .x$name == from_id)
-    for (the_field in names(flds)) {
-      out_data[[the_field]] <-
-        codec::add_attrs(out_data[[the_field]], !!!flds[[the_field]])
-    }
-
-    out_data[[to_id]] <- codec::add_attrs(out_data[[to_id]], name = to_id, type = "string")
-  }
-
   return(out_data)
 }
 
