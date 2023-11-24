@@ -4,7 +4,7 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cincy
+# cincy <img src="man/figures/logo.svg" align="right" height="200" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/geomarker-io/cincy/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/geomarker-io/cincy/actions/workflows/R-CMD-check.yaml)
@@ -48,13 +48,7 @@ Or explore the data documentation online at [https://geomarker.io/cincy/referenc
 
 #### Examples
 
-Data are returned as simple features objects.
-
-```{r}
-library(sf)
-```
-
-For example, to get Cincinnati neighborhoods, as defined by the most recent version of community council boundaries from CAGIS:
+Data are returned as [simple features](https://r-spatial.org/sf) objects. For example, to get Cincinnati neighborhoods, as defined by the most recent version of community council boundaries from CAGIS:
 
 ```{r}
 cincy::neigh_ccc

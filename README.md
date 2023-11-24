@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# cincy
+# cincy <img src="man/figures/logo.svg" align="right" height="200" />
 
 <!-- badges: start -->
 
@@ -24,25 +24,25 @@ remotes::install_github("geomarker-io/cincy")
 Data objects are `data.frame`s of class `sf` and are named by geography,
 source, and optionally vintage:
 
-| name                  | geography | source  | vintage |
-|:----------------------|:---------:|:-------:|:-------:|
-| `zcta_tigris_2020`    |   zcta    | tigris  |  2020   |
-| `zcta_tigris_2010`    |   zcta    | tigris  |  2010   |
-| `zcta_tigris_2000`    |   zcta    | tigris  |  2000   |
-| `tract_tigris_2020`   |   tract   | tigris  |  2020   |
-| `tract_tigris_2010`   |   tract   | tigris  |  2010   |
-| `tract_tigris_2000`   |   tract   | tigris  |  2000   |
-| `neigh_sna`           |   neigh   |   sna   |         |
-| `neigh_cchmc_2020`    |   neigh   |  cchmc  |  2020   |
-| `neigh_cchmc_2010`    |   neigh   |  cchmc  |  2010   |
-| `neigh_ccc`           |   neigh   |   ccc   |         |
-| `county_swoh_2010`    |  county   |  swoh   |  2010   |
-| `county_hlthvoh_2010` |  county   | hlthvoh |  2010   |
-| `county_hlthv_2010`   |  county   |  hlthv  |  2010   |
-| `county_8cc_2010`     |  county   |   8cc   |  2010   |
-| `county_7cc_2010`     |  county   |   7cc   |  2010   |
-| `districts_tigris_2011`   |   congressional district   | tigris  |  2011   |
-| `districts_tigris_2013`   |   congressional district   | tigris  |  2013   |
+| name                    | geography | source  | vintage |
+|:------------------------|:---------:|:-------:|:-------:|
+| `zcta_tigris_2020`      |   zcta    | tigris  |  2020   |
+| `zcta_tigris_2010`      |   zcta    | tigris  |  2010   |
+| `zcta_tigris_2000`      |   zcta    | tigris  |  2000   |
+| `tract_tigris_2020`     |   tract   | tigris  |  2020   |
+| `tract_tigris_2010`     |   tract   | tigris  |  2010   |
+| `tract_tigris_2000`     |   tract   | tigris  |  2000   |
+| `neigh_sna`             |   neigh   |   sna   |         |
+| `neigh_cchmc_2020`      |   neigh   |  cchmc  |  2020   |
+| `neigh_cchmc_2010`      |   neigh   |  cchmc  |  2010   |
+| `neigh_ccc`             |   neigh   |   ccc   |         |
+| `districts_tigris_2013` | districts | tigris  |  2013   |
+| `districts_tigris_2011` | districts | tigris  |  2011   |
+| `county_swoh_2010`      |  county   |  swoh   |  2010   |
+| `county_hlthvoh_2010`   |  county   | hlthvoh |  2010   |
+| `county_hlthv_2010`     |  county   |  hlthv  |  2010   |
+| `county_8cc_2010`       |  county   |   8cc   |  2010   |
+| `county_7cc_2010`       |  county   |   7cc   |  2010   |
 
 Use autocomplete functionality at the `R` prompt (e.g., typing `cincy::`
 and pressing `TAB` twice) to find the needed `sf` object, narrowing
@@ -61,16 +61,9 @@ Or explore the data documentation online at
 
 #### Examples
 
-Data are returned as simple features objects.
-
-``` r
-library(sf)
-```
-
-    ## Linking to GEOS 3.11.1, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE
-
-For example, to get Cincinnati neighborhoods, as defined by the most
-recent version of community council boundaries from CAGIS:
+Data are returned as [simple features](https://r-spatial.org/sf)
+objects. For example, to get Cincinnati neighborhoods, as defined by the
+most recent version of community council boundaries from CAGIS:
 
 ``` r
 cincy::neigh_ccc
@@ -101,23 +94,23 @@ Code Tabulation Areas (ZCTAs), from 2000:
 cincy::zcta_tigris_2000
 ```
 
-    ## Simple feature collection with 54 features and 1 field
+    ## Simple feature collection with 53 features and 1 field
     ## Geometry type: MULTIPOLYGON
     ## Dimension:     XY
-    ## Bounding box:  xmin: 953086.2 ymin: 1838982 xmax: 1009435 ymax: 1872501
+    ## Bounding box:  xmin: 953086.2 ymin: 1838982 xmax: 1003658 ymax: 1871411
     ## Projected CRS: NAD83(NSRS2007) / Conus Albers
     ## First 10 features:
-    ##     zcta                       geometry
-    ## 1  45216 MULTIPOLYGON (((983383.5 18...
-    ## 2  45174 MULTIPOLYGON (((998460.2 18...
-    ## 3  45229 MULTIPOLYGON (((982399.6 18...
-    ## 4  45217 MULTIPOLYGON (((982958.8 18...
-    ## 5  45252 MULTIPOLYGON (((968113 1866...
-    ## 6  45239 MULTIPOLYGON (((975836.3 18...
-    ## 7  45243 MULTIPOLYGON (((998120.9 18...
-    ## 8  45236 MULTIPOLYGON (((990543.7 18...
-    ## 9  45220 MULTIPOLYGON (((979633.8 18...
-    ## 10 45204 MULTIPOLYGON (((976776.5 18...
+    ##    zcta_2000                       geometry
+    ## 1      45216 MULTIPOLYGON (((983383.5 18...
+    ## 2      45174 MULTIPOLYGON (((998460.2 18...
+    ## 3      45229 MULTIPOLYGON (((982399.6 18...
+    ## 4      45217 MULTIPOLYGON (((982958.8 18...
+    ## 5      45252 MULTIPOLYGON (((968113 1866...
+    ## 6      45239 MULTIPOLYGON (((975836.3 18...
+    ## 7      45243 MULTIPOLYGON (((998120.9 18...
+    ## 8      45236 MULTIPOLYGON (((990543.7 18...
+    ## 9      45220 MULTIPOLYGON (((979633.8 18...
+    ## 10     45204 MULTIPOLYGON (((976776.5 18...
 
 Alternatively, get the 2010 Counties in Cincinnati’s 7-county catchment
 area:
