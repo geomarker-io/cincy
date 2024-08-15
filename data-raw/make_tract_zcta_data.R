@@ -12,6 +12,11 @@ tract_tigris_2000 <-
   st_transform(5072) |>
   transmute(census_tract_id_2000 = CTIDFP00)
 
+blockgroup_tigris_2000 <-
+  tigris::block_groups(state = "39", county = "061", year = 2000) |>
+  st_transform(5072) |>
+  transmute(blockgroup_id_2000 = BKGPIDFP00)
+
 county_tigris_2000 <- st_union(tract_tigris_2000)
 
 zcta_tigris_2000 <-
@@ -26,12 +31,17 @@ zcta_tigris_2000 <-
                       .predicate = st_overlaps)) |>
   filter(!zcta_2000 %in% c(45140)) # manually remove
 
-usethis::use_data(tract_tigris_2000, zcta_tigris_2000, overwrite = TRUE)
+usethis::use_data(blockgroup_tigris_2000, tract_tigris_2000, zcta_tigris_2000, overwrite = TRUE)
 
 tract_tigris_2010 <-
   tracts(state = "39", county = "061", year = 2010) |>
   st_transform(5072) |>
   transmute(census_tract_id_2010 = GEOID10)
+
+blockgroup_tigris_2010 <-
+  tigris::block_groups(state = "39", county = "061", year = 2010) |>
+  st_transform(5072) |>
+  transmute(blockgroup_id_2000 = GEOID10)
 
 county_tigris_2010 <- st_union(tract_tigris_2010)
 
@@ -47,12 +57,17 @@ zcta_tigris_2010 <-
                       .predicate = st_overlaps))  |>
   filter(!zcta_2010 %in% c(45013, 45140, 45150)) # manually remove
 
-usethis::use_data(tract_tigris_2010, zcta_tigris_2010, overwrite = TRUE)
+usethis::use_data(blockgroup_tigris_2010, tract_tigris_2010, zcta_tigris_2010, overwrite = TRUE)
 
 tract_tigris_2020 <-
   tracts(state = "39", county = "061", year = 2020) |>
   st_transform(5072) |>
   transmute(census_tract_id_2020 = GEOID)
+
+blockgroup_tigris_2020 <-
+  tigris::block_groups(state = "39", county = "061", year = 2020) |>
+  st_transform(5072) |>
+  transmute(blockgroup_id_2000 = GEOID)
 
 county_tigris_2020 <- st_union(tract_tigris_2020)
 
@@ -70,4 +85,4 @@ zcta_tigris_2020 <-
                       45157, 45014, 45013, 45069, 45040,
                       45140, 45150)) # manually remove
 
-usethis::use_data(tract_tigris_2020, zcta_tigris_2020, overwrite = TRUE)
+usethis::use_data(blockgroup_tigris_2020, tract_tigris_2020, zcta_tigris_2020, overwrite = TRUE)
