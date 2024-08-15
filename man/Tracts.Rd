@@ -5,7 +5,7 @@
 \alias{tract_tigris_2000}
 \alias{tract_tigris_2010}
 \alias{tract_tigris_2020}
-\title{Tracts}
+\title{Tract}
 \format{
 An object of class \code{sf} (inherits from \code{data.frame}) with 230 rows and 2 columns.
 
@@ -14,11 +14,14 @@ An object of class \code{sf} (inherits from \code{data.frame}) with 222 rows and
 An object of class \code{sf} (inherits from \code{data.frame}) with 226 rows and 2 columns.
 }
 \source{
-\href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2000.html}{TIGER/Line Shapefile}
+/data-raw/make_blockgroup_tract_zcta_data.R
 
-\href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html}{TIER/Line Shapefile}
+\href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2000.html}{2000 TIGER/Line Shapefiles}
 
-\href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2020.html}{TIGER/Line Shapefile}
+\href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html}{2010 TIGER/Line Shapefiles}
+
+\href{https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2020.html}{2020 TIGER/Line Shapefiles}
+Census Tracts (2000 TIGER/Line)
 }
 \usage{
 tract_tigris_2000
@@ -32,6 +35,5 @@ Census Tracts for Hamilton County from 2000, 2010, and 2020.
 }
 \details{
 Tracts were downloaded directly from the Census Bureau using the \href{https://github.com/walkerke/tigris}{tigris} package
-Census Tracts (2000 TIGER/Line)
 }
 \keyword{datasets}

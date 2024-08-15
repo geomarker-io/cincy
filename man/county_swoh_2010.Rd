@@ -3,7 +3,7 @@
 \docType{data}
 \name{county_swoh_2010}
 \alias{county_swoh_2010}
-\title{Counties: Southwest Ohio}
+\title{Southwest Ohio Counties}
 \format{
 A simple features data frame with 4 rows and 6 columns:
 \describe{

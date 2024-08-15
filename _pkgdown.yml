@@ -12,6 +12,18 @@ template:
     btn-border-radius: 0.25rem
     code_font: {google: "Source Code Pro"}
 reference:
+- title: Hamilton County Census Geographies
+  contents:
+  - tract_tigris_2000
+  - blockgroup_tigris_2000
+  - zcta_tigris_2000
+- title: Neighborhoods
+  contents:
+  - neigh_ccc
+  - neigh_sna
+  - neigh_cchmc_2010
+  - neigh_cchmc_2020
+  - add_neighborhood
 - title: Counties
   contents:
   - county_swoh_2010
@@ -19,23 +31,10 @@ reference:
   - county_hlthvoh_2010
   - county_7cc_2010
   - county_8cc_2010
-- title: ZCTA
-  contents:
-  - zcta_tigris_2000
-- title: Census Tract
-  contents:
-  - tract_tigris_2000
 - title: Congressional Districts
   contents:
   - districts_tigris_2011
   - districts_tigris_2013
-- title: Neighborhood
-  contents:
-  - neigh_ccc
-  - neigh_sna
-  - neigh_cchmc_2010
-  - neigh_cchmc_2020
-  - add_neighborhood
 - title: Interpolate
   contents:
   - interpolate

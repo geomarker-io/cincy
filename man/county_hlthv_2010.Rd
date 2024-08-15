@@ -3,7 +3,7 @@
 \docType{data}
 \name{county_hlthv_2010}
 \alias{county_hlthv_2010}
-\title{Counties: Healthvine}
+\title{Healthvine Counties}
 \format{
 A simple features data frame with 15 rows and 6 columns:
 \describe{

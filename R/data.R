@@ -44,20 +44,21 @@ NULL
 #'
 #' Census Tracts for Hamilton County from 2000, 2010, and 2020.
 #' @details Tracts were downloaded directly from the Census Bureau using the [tigris](https://github.com/walkerke/tigris) package
+#' @source /data-raw/make_blockgroup_tract_zcta_data.R
+#' @source [2000 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2000.html)
+#' @source [2010 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html)
+#' @source [2020 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2020.html)
 
 #' Census Tracts (2000 TIGER/Line)
 #' @rdname Tracts
-#' @source [TIGER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2000.html)
 "tract_tigris_2000"
 
 #' Census Tracts (2010 TIGER/Line)
 #' @rdname Tracts
-#' @source [TIER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html)
 "tract_tigris_2010"
 
 #' Census Tracts (2020 TIGER/Line)
 #' @rdname Tracts
-#' @source [TIGER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2020.html)
 "tract_tigris_2020"
 
 #' Neighborhood: Cincinnati Community Council (CCC)

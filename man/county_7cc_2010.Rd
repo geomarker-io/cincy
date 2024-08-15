@@ -3,7 +3,7 @@
 \docType{data}
 \name{county_7cc_2010}
 \alias{county_7cc_2010}
-\title{Counties: 7 County Region}
+\title{Seven County Region}
 \format{
 A simple features data frame with 7 rows and 6 columns:
 \describe{
