@@ -1,42 +1,64 @@
 #' @importFrom sf st_as_sf
 NULL
 
-#' ZCTAs
+#' Block Groups
+#'
+#' Census block groups for Hamilton County from 2000, 2010, and 2020.
+#' @details Block groups were downloaded directly from the Census Bureau using the [tigris](https://github.com/walkerke/tigris) package
+#' @source [2000 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2000.html)
+#' @source [2010 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html)
+#' @source [2020 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2020.html)
+
+#' Block Groups (2000 TIGER/Line)
+#' @rdname BlockGroups
+"blockgroup_tigris_2000"
+
+#' Block Groups (2010 TIGER/Line)
+#' @rdname BlockGroups
+"blockgroup_tigris_2010"
+
+#' Block Groups (2020 TIGER/Line)
+#' @rdname BlockGroups
+"blockgroup_tigris_2020"
+
+
+#' ZCTA
 #'
 #' [ZIP Code Tabulation Areas (ZCTAs)](https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html)
 #' for Ohio that (at least partially) intersect with Hamilton County from 2000, 2010, and 2020.
 #' @source ZCTAs were downloaded directly from the Census Bureau using the [tigris](https://github.com/walkerke/tigris) package
 
 #' ZCTA (2000 TIGER/Line)
-#' @rdname ZCTAs
+#' @rdname ZCTA
 "zcta_tigris_2000"
 
 #' ZCTA (2010 TIGER/Line)
-#' @rdname ZCTAs
+#' @rdname ZCTA
 "zcta_tigris_2010"
 
 #' ZCTA (2020 TIGER/Line)
-#' @rdname ZCTAs
+#' @rdname ZCTA
 "zcta_tigris_2020"
 
-#' Tracts
+#' Tract
 #'
 #' Census Tracts for Hamilton County from 2000, 2010, and 2020.
 #' @details Tracts were downloaded directly from the Census Bureau using the [tigris](https://github.com/walkerke/tigris) package
+#' @source /data-raw/make_blockgroup_tract_zcta_data.R
+#' @source [2000 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2000.html)
+#' @source [2010 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html)
+#' @source [2020 TIGER/Line Shapefiles](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2020.html)
 
 #' Census Tracts (2000 TIGER/Line)
 #' @rdname Tracts
-#' @source [TIGER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2000.html)
 "tract_tigris_2000"
 
 #' Census Tracts (2010 TIGER/Line)
 #' @rdname Tracts
-#' @source [TIER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2010.html)
 "tract_tigris_2010"
 
 #' Census Tracts (2020 TIGER/Line)
 #' @rdname Tracts
-#' @source [TIGER/Line Shapefile](https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.2020.html)
 "tract_tigris_2020"
 
 #' Neighborhood: Cincinnati Community Council (CCC)
@@ -64,7 +86,7 @@ NULL
 #' @source The [2018 deprivation_index](https://geomarker.io/dep_index/2018_dep_index/). See `data-raw/make_dep_index_data.R`.
 "dep_index"
 
-#' Counties: Southwest Ohio
+#' Southwest Ohio Counties
 #'
 #' County groupings are derived from CCHMC operational definitions
 #' @source see data-raw/data.R for county FIPS listed for each grouping
@@ -85,7 +107,7 @@ NULL
 #'   tmap::tm_text(text = "county_name")
 "county_swoh_2010"
 
-#' Counties: Healthvine
+#' Healthvine Counties
 #'
 #' County groupings are derived from CCHMC operational definitions
 #' @source see data-raw/data.R for county FIPS listed for each grouping
@@ -106,7 +128,7 @@ NULL
 #'   tmap::tm_text(text = "county_name")
 "county_hlthv_2010"
 
-#' Counties: Healthvine (in Ohio)
+#' Healthvine Ohio Counties
 #'
 #' County groupings are derived from CCHMC operational definitions
 #' @source see data-raw/data.R for county FIPS listed for each grouping
@@ -127,7 +149,7 @@ NULL
 #'   tmap::tm_text(text = "county_name")
 "county_hlthvoh_2010"
 
-#' Counties: 7 County Region
+#' Seven County Region
 #'
 #' County groupings are derived from CCHMC operational definitions
 #' @source see data-raw/data.R for county FIPS listed for each grouping
@@ -148,7 +170,7 @@ NULL
 #'   tmap::tm_text(text = "county_name")
 "county_7cc_2010"
 
-#' Counties: 8 County Region
+#' Eight County Region
 #'
 #' County groupings are derived from CCHMC operational definitions
 #' @source see data-raw/data.R for county FIPS listed for each grouping

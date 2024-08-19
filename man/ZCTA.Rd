@@ -5,7 +5,7 @@
 \alias{zcta_tigris_2000}
 \alias{zcta_tigris_2010}
 \alias{zcta_tigris_2020}
-\title{ZCTAs}
+\title{ZCTA}
 \format{
 An object of class \code{sf} (inherits from \code{data.frame}) with 53 rows and 2 columns.
 
